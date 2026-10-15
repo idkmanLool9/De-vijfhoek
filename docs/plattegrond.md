@@ -23,13 +23,14 @@ De volledige vastgoedtekening blijft één overzicht (`floor: null`). Een vermel
 | 1 | Albert Heijn |
 | 5 | Gall & Gall |
 | 9 | Bakkerij Nollen |
+| 13 | G&W Gezondheids Winkel Rozemarijn |
 | 15 | Kruidvat |
 | 17 en 19 | Scapino |
 | 33 en 35 | Wibra |
 | 75 | Bibliotheek Oldenzaal |
 | 141 | Action |
 
-De kaart en winkelgids gebruiken dezelfde koppelingen. Bakkerij Nollen en Gall & Gall hebben eigen statische winkelpagina’s. Unitnummers worden niet gebruikt als vervanging voor een bevestigd volledig vestigingsadres. Ontbrekende contactgegevens, openingstijden en voorzieningen blijven leeg.
+De kaart en winkelgids gebruiken dezelfde koppelingen. Bakkerij Nollen, Gall & Gall en G&W Gezondheids Winkel Rozemarijn hebben eigen statische winkelpagina’s. Rozemarijn is door de opdrachtgever expliciet als gebruiker van unit 13 bevestigd. Het compacte kaartlabel luidt **G&W Rozemarijn**; het informatiepaneel, de zoeklijst en winkelpagina tonen de volledige naam. Unitnummers worden niet gebruikt als vervanging voor een bevestigd volledig vestigingsadres. Ontbrekende contactgegevens, openingstijden en voorzieningen blijven leeg.
 
 De overige zichtbare genummerde ruimtes tonen alleen **Unit [nummer]**, met `shopSlug: null`. Er zijn geen winkelnamen voor onbekende units bedacht. Nieuwe toewijzingen mogen na bevestiging worden toegevoegd aan de centrale lijst; nieuwe geometrie alleen met een herkenbare genummerde bron.
 
@@ -53,6 +54,6 @@ npm run typecheck
 E2E_PAGES=1 E2E_PORT=3400 npm run test:e2e
 ```
 
-`tests/floor-map.spec.ts` controleert de echte bezoekerspagina: onveranderde bronbytes en verhoudingen, zoom, verschuiven, de tien bevestigde unittoewijzingen met onafhankelijke referentiepunten, winkelpagina-links, onbekende units zonder winkelnaam, ontbrekende verdiepingen en responsive toegankelijkheid.
+`tests/floor-map.spec.ts` controleert de echte bezoekerspagina: onveranderde bronbytes en verhoudingen, zoom, verschuiven, de elf bevestigde unittoewijzingen met onafhankelijke referentiepunten, winkelpagina-links, onbekende units zonder winkelnaam, ontbrekende verdiepingen en responsive toegankelijkheid.
 
 `tests/map-canvas.spec.ts` controleert de kaartcomponent apart met herkenbaar synthetische geometrie. De harness staat buiten de App Router en is geen publieke route of plattegrond van De Vijfhoek. Deze tests controleren selectie, zoeken, meerdere units per winkel, zoomlimieten, slepen, aanraking, focus, toetsenbord, geometriebehoud en toegankelijkheid.

@@ -171,7 +171,7 @@ export function MapCanvas({ plan, shops, selectedId, matchingIds, onSelect, canv
           {units.map((unit) => {
             const shop = shops.find((shop) => shop.slug === unit.shopSlug);
             const name = mapUnitName(unit, shop);
-            const lines = shop ? labelLines(shop.name) : [];
+            const lines = shop ? labelLines(shop.mapLabel ?? shop.name) : [];
             return <g key={unit.id} className={`floor-map-unit ${plan.sourceImage ? "has-source" : ""} ${selectedId === unit.id ? "is-selected" : ""} ${matchingIds && !matchingIds.includes(unit.id) ? "is-dimmed" : ""}`}>
               <path ref={(element) => { if (element) paths.current.set(unit.id, element); else paths.current.delete(unit.id); }}
                 d={unit.geometry.path} fillRule="evenodd" vectorEffect="non-scaling-stroke" role="button" tabIndex={focusId === unit.id ? 0 : -1}

@@ -9,12 +9,15 @@ export const categories = [
   { id: "boeken-en-diensten", label: "Boeken & diensten" },
   { id: "eten-en-drinken", label: "Eten & drinken" },
   { id: "dranken", label: "Dranken" },
+  { id: "gezondheid", label: "Gezondheid" },
 ] as const;
 
 export type CategoryId = typeof categories[number]["id"];
 export type Shop = {
   slug: string;
   name: string;
+  // Compact kaartlabel; zoekresultaten en detailpagina houden de volledige naam.
+  mapLabel?: string;
   categoryLabel: string;
   categories: CategoryId[];
   description: string;
@@ -45,6 +48,7 @@ const confirmedShops: Shop[] = [
   { ...unconfirmed, slug: "bibliotheek-oldenzaal", name: "Bibliotheek Oldenzaal", categoryLabel: "Boeken & diensten", categories: ["boeken-en-diensten"], description: "Bibliotheek Oldenzaal in De Vijfhoek. Hier vind je de beschikbare informatie voor je bezoek aan de bibliotheek." },
   { ...unconfirmed, slug: "bakkerij-nollen", name: "Bakkerij Nollen", categoryLabel: "Bakkerij", categories: ["eten-en-drinken"], description: "Bakkerij Nollen in De Vijfhoek. Hier vind je de beschikbare informatie voor je bezoek aan deze winkel." },
   { ...unconfirmed, slug: "gall-en-gall", name: "Gall & Gall", categoryLabel: "Slijterij", categories: ["dranken"], description: "Gall & Gall in De Vijfhoek. Hier vind je de beschikbare informatie voor je bezoek aan deze winkel." },
+  { ...unconfirmed, slug: "gw-rozemarijn", name: "G&W Gezondheids Winkel Rozemarijn", mapLabel: "G&W Rozemarijn", categoryLabel: "Gezondheidswinkel", categories: ["gezondheid"], description: "G&W Gezondheids Winkel Rozemarijn in De Vijfhoek. Hier vind je de beschikbare informatie voor je bezoek aan deze winkel." },
 ];
 
 export const shops: Shop[] = confirmedShops.map((shop) => ({ ...shop, unit: getShopUnitLabel(shop.slug) }));

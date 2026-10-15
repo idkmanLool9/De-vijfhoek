@@ -41,11 +41,12 @@ test("bevestigde winkels staan in de juiste units en linken naar hun winkelpagin
   await expect(region.getByLabel("Legenda")).toBeVisible();
   const originalPaths = await drawing.locator(".floor-map-unit path").evaluateAll((paths) => paths.map((p) => p.getAttribute("d")));
   // Independent reference points read from the numbered drawing, in the
-  // unchanged clean source coordinate system. All ten owner allocations.
+  // unchanged clean source coordinate system. All eleven owner allocations.
   const expected = [
     { unit: "1", name: "Albert Heijn", slug: "albert-heijn", point: [802.5, 241] },
     { unit: "5", name: "Gall & Gall", slug: "gall-en-gall", point: [513.6, 261.1] },
     { unit: "9", name: "Bakkerij Nollen", slug: "bakkerij-nollen", point: [513.6, 381.4] },
+    { unit: "13", name: "G&W Gezondheids Winkel Rozemarijn", slug: "gw-rozemarijn", point: [481.5, 501.8] },
     { unit: "15", name: "Kruidvat", slug: "kruidvat", point: [621.9, 481.8] },
     { unit: "17", name: "Scapino", slug: "scapino", point: [754.4, 489.8] },
     { unit: "19", name: "Scapino", slug: "scapino", point: [890.8, 509.8] },

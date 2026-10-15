@@ -6,6 +6,7 @@ export const shopUnitAllocations = [
   { shopSlug: "kruidvat", unitNumbers: ["15"] },
   { shopSlug: "scapino", unitNumbers: ["17", "19"] },
   { shopSlug: "bakkerij-nollen", unitNumbers: ["9"] },
+  { shopSlug: "gw-rozemarijn", unitNumbers: ["13"] },
   { shopSlug: "gall-en-gall", unitNumbers: ["5"] },
   { shopSlug: "wibra", unitNumbers: ["33", "35"] },
   { shopSlug: "bibliotheek-oldenzaal", unitNumbers: ["75"] },
