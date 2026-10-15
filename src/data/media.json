@@ -40,11 +40,11 @@
     }
   },
   "winkel-bibliotheek-oldenzaal-foto": {
-    "src": "/images/official/winkel-bibliotheek-oldenzaal-foto.webp",
+    "src": "/images/official/winkel-bibliotheek-oldenzaal-foto.png",
     "alt": "Bibliotheek Oldenzaal · winkelfoto",
     "position": {
-      "x": 50,
-      "y": 33
+      "x": 73,
+      "y": 34
     }
   },
   "winkel-bibliotheek-oldenzaal-logo": {
@@ -61,6 +61,142 @@
     "position": {
       "x": 50,
       "y": 26
+    }
+  },
+  "eten-foto": {
+    "src": "/images/official/eten-foto.webp",
+    "alt": "Eten & drinken · foto",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "home-bezoek": {
+    "src": "/images/official/home-bezoek.png",
+    "alt": "Homepage · Bezoekersinfo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "home-winkels": {
+    "src": "/images/official/home-winkels.webp",
+    "alt": "Homepage · Winkels",
+    "position": {
+      "x": 50,
+      "y": 59
+    }
+  },
+  "over-centrum": {
+    "src": "/images/official/over-centrum.png",
+    "alt": "Over De Vijfhoek · centrumfoto",
+    "position": {
+      "x": 50,
+      "y": 56
+    }
+  },
+  "winkel-action-logo": {
+    "src": "/images/official/winkel-action-logo.webp",
+    "alt": "Action · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-bakkerij-nollen-foto": {
+    "src": "/images/official/winkel-bakkerij-nollen-foto.png",
+    "alt": "Bakkerij Nollen · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 14
+    }
+  },
+  "winkel-bakkerij-nollen-logo": {
+    "src": "/images/official/winkel-bakkerij-nollen-logo.png",
+    "alt": "Bakkerij Nollen · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-gall-en-gall-foto": {
+    "src": "/images/official/winkel-gall-en-gall-foto.png",
+    "alt": "Gall & Gall · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 27
+    }
+  },
+  "winkel-gall-en-gall-logo": {
+    "src": "/images/official/winkel-gall-en-gall-logo.webp",
+    "alt": "Gall & Gall · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-gw-rozemarijn-foto": {
+    "src": "/images/official/winkel-gw-rozemarijn-foto.png",
+    "alt": "G&W Gezondheids Winkel Rozemarijn · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-gw-rozemarijn-logo": {
+    "src": "/images/official/winkel-gw-rozemarijn-logo.png",
+    "alt": "G&W Gezondheids Winkel Rozemarijn · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-kruidvat-foto": {
+    "src": "/images/official/winkel-kruidvat-foto.png",
+    "alt": "Kruidvat · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 15
+    }
+  },
+  "winkel-kruidvat-logo": {
+    "src": "/images/official/winkel-kruidvat-logo.png",
+    "alt": "Kruidvat · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-scapino-foto": {
+    "src": "/images/official/winkel-scapino-foto.png",
+    "alt": "Scapino · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-scapino-logo": {
+    "src": "/images/official/winkel-scapino-logo.jpg",
+    "alt": "Scapino · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-wibra-foto": {
+    "src": "/images/official/winkel-wibra-foto.png",
+    "alt": "Wibra · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 61
+    }
+  },
+  "winkel-wibra-logo": {
+    "src": "/images/official/winkel-wibra-logo.webp",
+    "alt": "Wibra · logo",
+    "position": {
+      "x": 50,
+      "y": 50
     }
   }
 }
