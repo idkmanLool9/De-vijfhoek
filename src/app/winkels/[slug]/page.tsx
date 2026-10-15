@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/ui";
 import { ShopLogo, ShopPhoto } from "@/components/shop-card";
 
 type Props = { params: Promise<{ slug: string }> };
+export const dynamicParams = false;
 export function generateStaticParams() { return shops.map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const shop = getShop((await params).slug);

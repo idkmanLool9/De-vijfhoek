@@ -101,3 +101,16 @@ Of vanaf je eigen computer deployen:
 npx wrangler login
 npm run deploy:cloudflare
 ```
+
+## Live bekijken via GitHub Pages
+
+GitHub Pages heeft een eigen statische build en automatische workflow. Open [Settings → Pages](https://github.com/idkmanLool9/De-vijfhoek/settings/pages) en kies **Source: GitHub Actions**. De workflow `.github/workflows/pages.yml` bouwt, test en publiceert iedere push naar `main`. Start hem zo nodig handmatig via **Actions → Deploy website to GitHub Pages → Run workflow**.
+
+Na een geslaagde deployment is het verwachte adres **https://idkmanlool9.github.io/De-vijfhoek/**. De workflow toont de daadwerkelijke deployment-URL. Zie [docs/github-pages.md](docs/github-pages.md) voor de volledige instructies.
+
+```bash
+npm run build:pages
+npm run preview:pages
+```
+
+De Pages-build exporteert naar `out/`, inclusief alle winkelroutes en een 404-pagina. Het pad `/De-vijfhoek/` wordt toegepast op navigatie, scripts, stylesheets en lokale media. De normale Next.js- en Cloudflare-build blijven beschikbaar.
