@@ -1,1 +1,66 @@
-{}
+{
+  "centrum-hero": {
+    "src": "/images/official/centrum-hero.jpg",
+    "alt": "Grote centrumfoto",
+    "position": {
+      "x": 49,
+      "y": 44
+    }
+  },
+  "centrum-logo": {
+    "src": "/images/official/centrum-logo.png",
+    "alt": "Logo De Vijfhoek",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "home-eten": {
+    "src": "/images/official/home-eten.webp",
+    "alt": "Homepage · Eten & drinken",
+    "position": {
+      "x": 50,
+      "y": 41
+    }
+  },
+  "winkel-albert-heijn-foto": {
+    "src": "/images/official/winkel-albert-heijn-foto.png",
+    "alt": "Albert Heijn · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 67
+    }
+  },
+  "winkel-albert-heijn-logo": {
+    "src": "/images/official/winkel-albert-heijn-logo.png",
+    "alt": "Albert Heijn · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-bibliotheek-oldenzaal-foto": {
+    "src": "/images/official/winkel-bibliotheek-oldenzaal-foto.webp",
+    "alt": "Bibliotheek Oldenzaal · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 33
+    }
+  },
+  "winkel-bibliotheek-oldenzaal-logo": {
+    "src": "/images/official/winkel-bibliotheek-oldenzaal-logo.png",
+    "alt": "Bibliotheek Oldenzaal · logo",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  "winkel-action-foto": {
+    "src": "/images/official/winkel-action-foto.png",
+    "alt": "Action · winkelfoto",
+    "position": {
+      "x": 50,
+      "y": 26
+    }
+  }
+}

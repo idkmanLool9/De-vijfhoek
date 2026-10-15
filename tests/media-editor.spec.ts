@@ -6,7 +6,20 @@ import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { zipSync, strToU8 } from "fflate";
-import { sitePath } from "./paths";
+import { publishedMedia } from "../src/data/media";
+import { basePath, sitePath } from "./paths";
+
+async function expectPublishedHero(page: Page) {
+  const hero = publishedMedia["centrum-hero"];
+  if (hero) {
+    const image = page.locator('[data-media-id="centrum-hero"] img');
+    await expect(image).toHaveAttribute("src", `${basePath}${hero.src}`);
+    await expect(image).toHaveCSS("object-position", `${hero.position.x}% ${hero.position.y}%`);
+  } else {
+    await expect(page.locator('[data-media-id="centrum-hero"]')).toHaveCount(0);
+    await expect(page.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toBeVisible();
+  }
+}
 
 // A small neutral test image; it is never committed or published as centre imagery.
 async function testImage(page: Page) {
@@ -46,18 +59,18 @@ test("foto’s blijven lokaal bewaard en verschijnen alleen in de eigen voorvert
   const otherContext = await browser.newContext();
   const otherPage = await otherContext.newPage();
   await otherPage.goto(page.url());
-  await expect(otherPage.locator('[data-media-id="centrum-hero"]')).toHaveCount(0);
-  await expect(otherPage.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toBeVisible();
+  await expectPublishedHero(otherPage);
+  await expect(otherPage.getByRole("complementary", { name: "Lokale fotovoorvertoning" })).toHaveCount(0);
   await otherContext.close();
   await page.getByRole("button", { name: "Voorbeeld uitzetten" }).click();
-  await expect(image).toHaveCount(0);
+  await expectPublishedHero(page);
   await page.goto(sitePath("/bewerken"));
   await expect(card.getByText("Lokaal gekozen", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Voorbeeld aanzetten", exact: true }).click();
   await card.getByRole("button", { name: "Verwijder keuze" }).click();
-  await expect(card.getByText("Nog leeg", { exact: true })).toBeVisible();
+  await expect(card.getByText(publishedMedia["centrum-hero"] ? "Vast op website" : "Nog leeg", { exact: true })).toBeVisible();
   await page.reload();
-  await expect(card.getByText("Nog leeg", { exact: true })).toBeVisible();
+  await expect(card.getByText(publishedMedia["centrum-hero"] ? "Vast op website" : "Nog leeg", { exact: true })).toBeVisible();
 });
 
 test("een compleet fotopakket kan worden geëxporteerd, teruggezet en definitief geïmporteerd", async ({ page }, testInfo) => {
@@ -89,7 +102,7 @@ test("een compleet fotopakket kan worden geëxporteerd, teruggezet en definitief
   expect(manifest["centrum-logo"].alt).toBe(entries[0].alt);
   expect(await readFile(`${root}/public/images/official/centrum-logo.png`)).toEqual(Buffer.from(entries[0].bytes));
   await card.getByRole("button", { name: "Verwijder keuze" }).click();
-  await expect(card.getByText("Nog leeg", { exact: true })).toBeVisible();
+  await expect(card.getByText(publishedMedia["centrum-logo"] ? "Vast op website" : "Nog leeg", { exact: true })).toBeVisible();
   await page.getByLabel("Importeer fotopakket", { exact: false }).setInputFiles(file);
   await expect(card.getByText("Lokaal gekozen", { exact: true })).toBeVisible();
   await expect(card.getByLabel("Beschrijving van het beeld")).toHaveValue(entries[0].alt);

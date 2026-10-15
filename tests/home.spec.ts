@@ -1,11 +1,21 @@
 import { test, expect } from "@playwright/test";
-import { sitePath } from "./paths";
+import { publishedMedia } from "../src/data/media";
+import { basePath, sitePath } from "./paths";
 
-test("homepage toont de afgesproken inhoud en eerlijke placeholders", async ({ page }) => {
+test("homepage toont de afgesproken inhoud en beschikbare beelden", async ({ page }) => {
   await page.goto(sitePath("/"));
   await expect(page).toHaveTitle("De Vijfhoek Oldenzaal | Alles dichtbij");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Alles dichtbij.Midden in Oldenzaal.");
-  await expect(page.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toBeVisible();
+  const hero = publishedMedia["centrum-hero"];
+  if (hero) {
+    const image = page.locator('[data-media-id="centrum-hero"] img');
+    await expect(image).toHaveAttribute("src", `${basePath}${hero.src}`);
+    await expect(image).toHaveCSS("object-position", `${hero.position.x}% ${hero.position.y}%`);
+    await expect.poll(() => image.evaluate((node) => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    await expect(page.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toHaveCount(0);
+  } else {
+    await expect(page.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toBeVisible();
+  }
   await expect(page.getByRole("link", { name: "Ontdek de winkels", exact: true })).toHaveAttribute("href", sitePath("/winkels"));
   await expect(page.getByText("Er zijn op dit moment nog geen bevestigde nieuwsberichten of evenementen gepubliceerd.")).toBeVisible();
 });
