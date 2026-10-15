@@ -94,7 +94,7 @@ test("bezoekersinformatie heeft werkende ankers en toegankelijke vragen", async 
   await expect(page).toHaveURL(/#plattegrond$/);
   await expect(page.locator("#plattegrond").getByRole("heading", { name: "Plattegrond", exact: true })).toBeInViewport();
   await page.getByText("Is er een plattegrond beschikbaar?", { exact: true }).click();
-  await expect(page.getByText("Er staat nog geen officiële plattegrond op deze website.", { exact: false })).toBeVisible();
+  await expect(page.getByText("Onder Plattegrond kun je winkels en unitnummers opzoeken.", { exact: false })).toBeVisible();
 });
 
 test("alle interne links verwijzen naar bestaande routes en ankers", async ({ page, request }) => {

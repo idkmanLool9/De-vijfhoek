@@ -48,6 +48,8 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 
 ## Gegevens en officiële media
 
+De bezoekerspagina bevat een kaartinterface voor zoeken, selectie en winkelinformatie. De interactieve SVG-component ondersteunt zoom, verschuiven en toetsenbordbediening. De originele genummerde vastgoedplattegrond is nog nodig voor de echte contouren en winkelposities; de opgeschoonde afbeelding bepaalt geen officiële unitkoppelingen. Tot die tijd toont de publieke kaart een lege toestand. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
+
 Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van officiële foto’s en logo’s, beschrijvingen en uitsneden. Keuzes worden lokaal in de browser bewaard en kunnen als ZIP-pakket worden geëxporteerd en teruggezet. Ze worden pas voor iedereen zichtbaar nadat het pakket in de repository is verwerkt en gedeployed. Zie [Foto’s bewerken](docs/fotos-bewerken.md) voor gebruik, overdracht en het later verwijderen van de editor.
 
 - `src/data/shops.ts`: de zes door de opdrachtgever bevestigde winkels. Voeg een object met unieke `slug` toe voor een nieuwe bevestigde winkel. Categorieën staan in hetzelfde bestand; zoekresultaataantallen worden uit de data berekend.
