@@ -24,6 +24,8 @@ Kies alleen aangeleverde officiële foto’s en logo’s. Een foto toevoegen ver
 
 Grotere fotosets worden automatisch verdeeld over kleinere ZIP-pakketten. Download en bewaar alle delen. Je kunt de delen één voor één importeren; ze vullen elkaar aan. Dit houdt de bestanden makkelijk deelbaar en behoudt de originele beeldkwaliteit.
 
+De ZIP-functies worden samen met de editor geladen. Downloaden en importeren vereisen daarna geen extra JavaScript-bestand; zo kan een nieuw gepubliceerde website die acties in een al geopend tabblad niet onderbreken doordat een uitgesteld script verdwenen is. Zie je in een oudere versie nog **Failed to load chunk** bij downloaden, herlaad de bewerkpagina na de nieuwe deployment met **Ctrl+Shift+R** (Mac: **Cmd+Shift+R**). Daarmee haal je de actuele editor op; je foto’s in IndexedDB blijven behouden. Wis hiervoor geen browsergegevens.
+
 ## Waar worden mijn keuzes bewaard?
 
 Je foto’s en instellingen blijven lokaal op dit apparaat in deze browser, met IndexedDB. De voortgang blijft normaal na herladen en opnieuw openen bewaard. Browsergegevens wissen, privévensters, opslaglimieten of een ander apparaat kunnen de lokale keuzes onbeschikbaar maken. Download daarom tussendoor een back-up.

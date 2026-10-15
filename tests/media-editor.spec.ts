@@ -73,7 +73,7 @@ test("foto’s blijven lokaal bewaard en verschijnen alleen in de eigen voorvert
   await expect(card.getByText(publishedMedia["centrum-hero"] ? "Vast op website" : "Nog leeg", { exact: true })).toBeVisible();
 });
 
-test("een compleet fotopakket kan worden geëxporteerd, teruggezet en definitief geïmporteerd", async ({ page }, testInfo) => {
+test("een compleet fotopakket kan zonder extra scripts worden geëxporteerd, teruggezet en definitief geïmporteerd", async ({ page }, testInfo) => {
   await page.goto(sitePath("/bewerken"));
   const input = page.getByLabel("Logo De Vijfhoek kiezen", { exact: true });
   await expect(input).toBeEnabled();
@@ -83,7 +83,15 @@ test("een compleet fotopakket kan worden geëxporteerd, teruggezet en definitief
   await card.getByLabel("Beschrijving van het beeld").fill("Logo De Vijfhoek — testkeuze");
   const downloadButton = page.getByRole("button", { name: "Download fotopakket", exact: true });
   await expect(downloadButton).toBeEnabled();
-  const downloaded = page.waitForEvent("download");
+  // Reproduce a tab whose later chunk request fails after a deployment. ZIP
+  // operations must already be available once the editor is ready to use.
+  const lateScripts: string[] = [];
+  const chunks = /\/_next\/static\/chunks\/[^/]+\.js(?:\?|$)/;
+  await page.route(chunks, (route) => {
+    lateScripts.push(route.request().url());
+    return route.abort("failed");
+  });
+  const downloaded = page.waitForEvent("download", { timeout: 5000 });
   await downloadButton.click();
   const download = await downloaded;
   const file = testInfo.outputPath("de-vijfhoek-fotos.zip");
@@ -106,6 +114,8 @@ test("een compleet fotopakket kan worden geëxporteerd, teruggezet en definitief
   await page.getByLabel("Importeer fotopakket", { exact: false }).setInputFiles(file);
   await expect(card.getByText("Lokaal gekozen", { exact: true })).toBeVisible();
   await expect(card.getByLabel("Beschrijving van het beeld")).toHaveValue(entries[0].alt);
+  expect(lateScripts, "ZIP-export en -import vragen geen extra JavaScript op").toEqual([]);
+  await page.unroute(chunks);
   await page.getByRole("link", { name: "Terug naar de website", exact: true }).click();
   await expect(page.locator('header [data-media-id="centrum-logo"] img')).toBeVisible();
   await expect(page.locator('footer [data-media-id="centrum-logo"] img')).toBeVisible();

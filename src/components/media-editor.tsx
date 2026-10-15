@@ -7,6 +7,9 @@ import { Download, Eye, ImagePlus, Upload, ArrowLeft, Check, Trash2 } from "luci
 import { mediaSlots, publishedMedia } from "@/data/media";
 import { assetPath } from "@/lib/paths";
 import { MAX_PACKAGE_BYTES, type StoredMedia } from "@/lib/media-schema";
+// Keep ZIP operations in the editor's initial bundle. An already open editor
+// must not request a deferred chunk that may disappear after a deployment.
+import { createMediaPackage, groupMediaRecords, readMediaPackage } from "@/lib/media-package";
 import { useMediaEditor, type MediaDraft } from "./media-provider";
 
 type Slot = typeof mediaSlots[number];
@@ -77,7 +80,6 @@ export function MediaEditor() {
   async function download() {
     setBusy(true); setActionError(""); setNotice("");
     try {
-      const { createMediaPackage, groupMediaRecords } = await import("@/lib/media-package");
       for (const url of downloadUrls.current) URL.revokeObjectURL(url);
       downloadUrls.current.length = 0;
       setDownloads(null);
@@ -109,7 +111,6 @@ export function MediaEditor() {
     setBusy(true); setActionError(""); setNotice("");
     try {
       if (file.size > MAX_PACKAGE_BYTES + 256 * 1024) throw new Error("Dit pakket is groter dan 200 MB.");
-      const { readMediaPackage } = await import("@/lib/media-package");
       const entries = readMediaPackage(new Uint8Array(await file.arrayBuffer()));
       const incoming: StoredMedia[] = [];
       // Decode one photo at a time so a large backup also works on mobile.
