@@ -47,5 +47,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(Number(values.port), "127.0.0.1", () => {
-  console.log(`GitHub Pages preview listening on port ${values.port}, path ${basePath || "/"}.`);
+  console.log(`Static Pages preview listening on port ${values.port}, path ${basePath || "/"}.`);
 });

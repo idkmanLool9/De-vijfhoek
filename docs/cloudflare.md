@@ -1,72 +1,80 @@
-# De website live zetten op Cloudflare
+# De website live zetten op Cloudflare Pages
 
-Dit project gebruikt Next.js met de OpenNext-adapter voor **Cloudflare Workers**. `wrangler.jsonc` bevat de Workernaam, de assetsbinding en de runtime-instellingen. De app heeft geen database, externe cache, betaalde afbeeldingendienst of runtimegeheimen nodig. Foto’s worden rechtstreeks als lokale bestanden geserveerd.
+Het bestaande project **de-vijfhoek** op **de-vijfhoek.pages.dev** is een Cloudflare Pages-project. Gebruik daarvoor de statische Pages-build. Die bevat de homepage, winkelroutes, foto-editor, scripts, stylesheets en een echte 404-pagina. Er zijn geen database, uploadserver, applicatiesecrets of betaalde afbeeldingsdiensten nodig.
 
-## Via GitHub in het dashboard
+## Het bestaande Pages-project instellen
 
-1. Open het [Cloudflare Dashboard](https://dash.cloudflare.com/) en log in op je eigen account.
-2. Ga naar **Workers & Pages** en maak een nieuwe Worker-applicatie aan via de GitHub-/repository-import. Geef Cloudflare toegang tot `idkmanLool9/De-vijfhoek`.
-3. Selecteer de repository en productiebranch `main`.
-4. Vul de instellingen hieronder in. Laat de dependency-installatie automatisch uitvoeren; het vastgelegde `package-lock.json` hoort bij deze configuratie.
-5. Start de deployment. De build en deployment moeten beide slagen.
-6. Open de publieke `workers.dev`-URL die Cloudflare bij de Worker toont. Je kunt die URL ook op je telefoon of met anderen openen. Daar zie je de website echt live, inclusief de herkenbare placeholders voor nog aan te leveren foto’s.
+1. Open het [Cloudflare Dashboard](https://dash.cloudflare.com/), ga naar **Workers & Pages** en open **de-vijfhoek**.
+2. Open **Settings → Builds & deployments → Build configurations → Edit** (in sommige dashboardversies **Settings → Build**).
+3. Controleer de onderstaande instellingen en sla ze op.
+4. Ga naar **Deployments** en start een nieuwe deployment van de nieuwste commit op `main`. Gebruik **Retry deployment** bij die commit als die al klaarstaat. Een retry van een oudere commit bevat deze oplossing nog niet.
+5. Open na een geslaagde productie-deployment **https://de-vijfhoek.pages.dev/**. De foto-editor staat dan op **https://de-vijfhoek.pages.dev/bewerken/**.
 
-| Veld | Waarde |
+| Instelling | Waarde |
 | --- | --- |
-| Worker-/projectnaam | `de-vijfhoek` |
+| Repository | `idkmanLool9/De-vijfhoek` |
 | Productiebranch | `main` |
-| Rootdirectory | repository-root (`/`) |
-| Buildcommando | `npm run build:cloudflare` |
-| Deploycommando | `npx opennextjs-cloudflare deploy` |
-| Node-versie | `24`, vastgelegd in `.nvmrc` |
+| Framework preset | `None` |
+| Build command | `npm run build:cloudflare-pages` |
+| Build output directory | `out` |
+| Root directory | standaard / repository-root |
+| Node.js | `24`, via `.nvmrc` |
 
-Cloudflare bepaalt de uiteindelijke URL op basis van je account en Workernaam. `workers_dev: true` schakelt de publieke standaard-URL in. Een naamconflict in je eigen account kun je oplossen door `name` én `services[0].service` in `wrangler.jsonc` dezelfde nieuwe naam te geven en de dashboardnaam daarmee gelijk te houden.
+`wrangler.jsonc` legt de publicatiemap ook vast met `pages_build_output_dir: "./out"`. Pages gebruikt deze configuratie bij een nieuwe deployment. Het eerdere buildcommando `npm run build:cloudflare` blijft op Pages werken: Cloudflare zet `CF_PAGES=1`, waarna dat commando automatisch dezelfde statische build maakt. Gebruik bij nieuwe instellingen het expliciete Pages-commando uit de tabel.
 
-De GitHub-koppeling kan iedere nieuwe commit op `main` automatisch deployen. Bekijk de buildlogs in het dashboard als een wijziging nog niet zichtbaar is. Een succesvolle Git-push betekent dat de code op GitHub staat; de website verandert pas na een geslaagde Cloudflare-deployment.
+De export gebruikt op Cloudflare het rootpad `/`, ook als er nog een `PAGES_BASE_PATH`-variabele voor GitHub Pages is ingesteld. GitHub Pages heeft zijn eigen build onder `/De-vijfhoek/`.
 
-## Vanaf je eigen computer
+## Waarom een geslaagde deployment toch 404 kan geven
 
-Gebruik Node.js 24 en voer de commando’s uit vanuit de repository-root:
+Een geslaagde upload betekent dat Cloudflare bestanden heeft gepubliceerd. Als de gekozen map geen `index.html` bevat, kan de homepage toch 404 geven. De OpenNext Worker-build levert een Worker en assets op; voor dit Pages-project is `out/` met de statische HTML nodig. Publiceer hier `out`, geen repository-root, `.next` of `.open-next/assets`.
+
+Een Git-push zet code op GitHub. De publieke website verandert pas wanneer Pages de nieuwste commit heeft gebouwd en gepubliceerd. Kijk bij een fout naar de buildlogs. Controleer ook of de deployment de productiebranch `main` gebruikt; alleen een previewdeployment verandert het productieadres niet.
+
+## Dezelfde Pages-versie lokaal controleren
+
+Gebruik Node.js 24 vanuit de repository-root:
 
 ```bash
 npm ci
-npx wrangler login
-npm run deploy:cloudflare
+npm run build:cloudflare-pages
+npm run preview:cloudflare-pages
 ```
 
-`wrangler login` opent de beveiligde Cloudflare-aanmelding in je browser. `deploy:cloudflare` bouwt de Next.js-app, maakt de Worker-bundle en publiceert die in het account waarmee je bent aangemeld. Het commando toont na succes het publieke adres. Zet geen toegangstokens in Git of in chatberichten.
+De preview gebruikt de lokale Cloudflare Pages-runtime en leest de map `out` uit `wrangler.jsonc`. Start de bestaande browsertests met:
 
-## Lokaal testen in de Cloudflare-runtime
+```bash
+E2E_PAGES=1 E2E_PORT=3350 E2E_SERVER_COMMAND='npm run preview:cloudflare-pages -- --port 3350' npm run test:e2e
+```
+
+Een lichtere statische preview kan met `npm run preview:pages -- --base-path ''`. Deze commando’s publiceren niets.
+
+De tijdelijke foto-editor werkt ook op Pages. Foto’s blijven lokaal in de browser tot het geëxporteerde fotopakket in de repository is verwerkt. Zie [Foto’s bewerken](fotos-bewerken.md).
+
+## Optioneel: Cloudflare Workers
+
+De eerdere OpenNext Workers-optie blijft beschikbaar voor een afzonderlijk Worker-project. De Worker-configuratie staat in **`wrangler.worker.jsonc`**. Voor het bestaande `pages.dev`-project gebruik je de Pages-instellingen hierboven.
+
+| Instelling voor een Worker-project | Waarde |
+| --- | --- |
+| Build command | `npm run build:cloudflare` |
+| Deploy command | `npx opennextjs-cloudflare deploy --config wrangler.worker.jsonc` |
+| Worker name | `de-vijfhoek` |
+| Node.js | `24` |
+
+Zonder `CF_PAGES=1` maakt `build:cloudflare` de OpenNext Worker-bundle. Lokaal testen:
 
 ```bash
 npm run build:cloudflare
 npm run preview:cloudflare
 ```
 
-De preview draait standaard op poort 8787 met de lokale Workers-runtime. Voor de bestaande browsertests:
+Vanaf je eigen computer publiceren naar een Worker:
 
 ```bash
-E2E_PORT=3100 E2E_SERVER_COMMAND='npm run preview:cloudflare -- --port 3100' npm run test:e2e
+npx wrangler login
+npm run deploy:cloudflare
 ```
 
-Dat controleert dezelfde Cloudflare-bundle die wordt gedeployed. Alleen de build maken of de lokale preview starten publiceert de website nog niet. Een deployment voorbereiden zonder te publiceren kan met:
+De Worker-configuratie bindt `.open-next/assets` als `ASSETS`, activeert `nodejs_compat` en verwijst via `WORKER_SELF_REFERENCE` naar dezelfde Worker. Bij een andere Workernaam moeten `name` en `services[0].service` samen worden aangepast. Er is geen externe cache nodig. Het Worker-adres eindigt op `workers.dev` en wordt door Cloudflare bepaald.
 
-```bash
-npx opennextjs-cloudflare deploy --dry-run
-```
-
-## Een eigen domein
-
-Open na de eerste geslaagde deployment de Worker in Cloudflare en voeg onder **Settings → Domains & Routes** een **Custom Domain** toe. Cloudflare begeleidt de DNS- en HTTPS-instellingen voor dat domein. Je kunt intussen de standaard `workers.dev`-URL gebruiken. Er is in deze repository geen domeinnaam of account-ID verzonnen of vastgelegd.
-
-## Opbouw van de deployment
-
-- `npm run build:cloudflare` maakt `.open-next/worker.js` en `.open-next/assets`.
-- `wrangler.jsonc` bindt de statische bestanden als `ASSETS` en verwijst naar de Worker-bundle.
-- `nodejs_compat` maakt de Node.js-API’s beschikbaar die Next.js nodig heeft.
-- `WORKER_SELF_REFERENCE` verwijst naar dezelfde Worker, zoals ondersteund door OpenNext.
-- `open-next.config.ts` gebruikt de standaardadapter zonder externe incremental cache. De huidige inhoud komt uit lokale data; nieuwe inhoud wordt met een nieuwe deployment gepubliceerd.
-- `images.unoptimized` serveert aangeleverde foto's direct, zonder aparte afbeeldingsdienst.
-- `.open-next/`, `.wrangler/` en lokale `.dev.vars`-bestanden worden niet in Git opgenomen.
-
-Technische bronnen: [OpenNext voor Cloudflare](https://opennext.js.org/cloudflare), [Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/) en [workers.dev](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/).
+Technische bronnen: [Statische Next.js-sites op Pages](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/), [Pages-buildconfiguratie](https://developers.cloudflare.com/pages/configuration/build-configuration/), [Pages Wrangler-configuratie](https://developers.cloudflare.com/pages/functions/wrangler-configuration/) en [OpenNext voor Workers](https://opennext.js.org/cloudflare).

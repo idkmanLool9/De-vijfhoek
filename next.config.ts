@@ -1,10 +1,13 @@
 import type { NextConfig } from "next";
 
-const isGitHubPages = process.env.DEPLOY_TARGET === "github-pages";
+const deployTarget = process.env.DEPLOY_TARGET
+  ?? (process.env.CF_PAGES === "1" ? "cloudflare-pages" : undefined);
+const isGitHubPages = deployTarget === "github-pages";
+const isStaticExport = isGitHubPages || deployTarget === "cloudflare-pages";
 const basePath = isGitHubPages ? (process.env.PAGES_BASE_PATH ?? "/De-vijfhoek") : "";
 
 const nextConfig: NextConfig = {
-  ...(isGitHubPages ? { output: "export", trailingSlash: true } : {}),
+  ...(isStaticExport ? { output: "export", trailingSlash: true } : {}),
   basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   poweredByHeader: false,

@@ -70,39 +70,28 @@ npm start
 
 De website heeft paginatitels, beschrijvingen, Nederlandse taalinstelling, leesbare routes en echte 404-responses.
 
-## Live bekijken via Cloudflare
+## Live bekijken via Cloudflare Pages
 
-Cloudflare Workers is geconfigureerd met de OpenNext-adapter. De volledige uitleg staat in [docs/cloudflare.md](docs/cloudflare.md).
-
-Koppel in het [Cloudflare Dashboard](https://dash.cloudflare.com/) deze GitHub-repository aan een Worker met deze instellingen:
+Het bestaande project **de-vijfhoek.pages.dev** gebruikt Cloudflare Pages. Open in Cloudflare **Workers & Pages → de-vijfhoek → Settings → Builds & deployments** en gebruik:
 
 | Instelling | Waarde |
 | --- | --- |
 | Repository | `idkmanLool9/De-vijfhoek` |
 | Productiebranch | `main` |
-| Workernaam | `de-vijfhoek` |
-| Rootdirectory | repository-root (`/`) |
-| Buildcommando | `npm run build:cloudflare` |
-| Deploycommando | `npx opennextjs-cloudflare deploy` |
-| Node.js | 24 via de bestaande `.nvmrc` |
+| Framework preset | `None` |
+| Build command | `npm run build:cloudflare-pages` |
+| Build output directory | `out` |
+| Root directory | repository-root / standaard |
+| Node.js | `24`, via `.nvmrc` |
 
-Klik op **Deploy**. Open na een succesvolle deployment de door Cloudflare getoonde `workers.dev`-URL om de website live te bekijken. De precieze URL hangt af van je Cloudflare-account. Een eigen domein kun je later via de Worker-instellingen koppelen. Nieuwe commits op `main` kunnen automatisch worden gebouwd en gepubliceerd via de GitHub-koppeling.
-
-Er zijn geen applicatiesecrets, database, R2-bucket of Cloudflare Images-dienst nodig. Voor deployment gebruik je je eigen Cloudflare-account; GitHub-toegang en Cloudflare-toegang zijn afzonderlijke koppelingen.
-
-Lokaal de Cloudflare-versie controleren:
+Sla de instellingen op en deploy de nieuwste commit op `main`. Na een geslaagde productie-deployment staan de website op **https://de-vijfhoek.pages.dev/** en de tijdelijke foto-editor op **https://de-vijfhoek.pages.dev/bewerken/**. De map `out` is ook vastgelegd in `wrangler.jsonc`.
 
 ```bash
-npm run build:cloudflare
-npm run preview:cloudflare
+npm run build:cloudflare-pages
+npm run preview:cloudflare-pages
 ```
 
-Of vanaf je eigen computer deployen:
-
-```bash
-npx wrangler login
-npm run deploy:cloudflare
-```
+De volledige uitleg en hulp bij een 404 staan in [docs/cloudflare.md](docs/cloudflare.md). Het eerdere `build:cloudflare`-commando herkent Cloudflare Pages automatisch via `CF_PAGES=1`. De optionele OpenNext Workers-configuratie blijft beschikbaar in `wrangler.worker.jsonc`; de bestaande preview- en deployscripts verwijzen daar expliciet naar.
 
 ## Live bekijken via GitHub Pages
 

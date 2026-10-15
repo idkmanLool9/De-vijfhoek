@@ -1,6 +1,10 @@
 # Tijdelijke bewerkmodus voor foto’s en logo’s
 
-Open op de gepubliceerde website **`/bewerken/`**. Voor GitHub Pages is dat na een geslaagde deployment:
+Open op de gepubliceerde website **`/bewerken/`**. Na een geslaagde Cloudflare Pages-deployment:
+
+**https://de-vijfhoek.pages.dev/bewerken/**
+
+Voor GitHub Pages:
 
 **https://idkmanlool9.github.io/De-vijfhoek/bewerken/**
 

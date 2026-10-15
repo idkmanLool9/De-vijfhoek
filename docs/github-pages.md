@@ -1,6 +1,6 @@
 # De website op GitHub Pages publiceren
 
-GitHub Pages is als tweede deploymentoptie toegevoegd. De Cloudflare Workers-configuratie blijft beschikbaar. Beide builds gebruiken dezelfde pagina’s en centrale lokale data.
+GitHub Pages heeft een eigen statische deployment. De Cloudflare Pages- en Workers-opties blijven beschikbaar. Alle builds gebruiken dezelfde pagina’s en centrale lokale data.
 
 ## Eenmalig inschakelen
 
@@ -46,4 +46,4 @@ E2E_PAGES=1 E2E_BASE_PATH=/De-vijfhoek E2E_PORT=3200 npm run test:e2e
 
 De testconfiguratie start de statische preview indien nodig en hergebruikt hem als hij al draait. Buiten de cloudomgeving installeer je zo nodig eerst de testbrowser met `npx playwright install chromium`.
 
-Cloudflare blijft werken met de bestaande `npm run build:cloudflare` en `npm run deploy:cloudflare`; die bouwen met het normale lege basepad. De [Cloudflare-instructies](cloudflare.md) blijven van toepassing.
+Voor het bestaande Cloudflare Pages-project gebruik je `npm run build:cloudflare-pages` en outputmap `out`, zonder het GitHub-basepad. De optionele Workers-scripts blijven beschikbaar. Zie de [Cloudflare-instructies](cloudflare.md).
