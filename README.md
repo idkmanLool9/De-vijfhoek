@@ -40,7 +40,7 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 | `/` | Homepage |
 | `/winkels` | Doorzoekbare winkelgids met categorieën |
 | `/winkels/[slug]` | Winkeldetails, metadata en breadcrumbs |
-| `/eten-en-drinken` | Horeca-informatie; wacht op bevestigde zaken |
+| `/eten-en-drinken` | Bevestigde winkels voor eten en drinken |
 | `/nieuws` | Nieuws en evenementen met filters |
 | `/nieuws/[slug]` | Detailtemplate voor bevestigde publicaties |
 | `/bezoekersinformatie` | Praktische onderwerpen, plattegrond met zoom en FAQ |
@@ -58,6 +58,7 @@ Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van offici�
 - Aangeleverde officiële foto’s en logo’s staan onder `public/images/official/`. De publicatiekoppelingen en uitsneden staan centraal in `src/data/media.json`; de tijdelijke fotobewerker kan aanvullende media voorbereiden. Alle aangeleverde bestanden blijven bewaard, ook wanneer een bestand nog niet aan een openbare positie is gekoppeld.
 - Beeldposities zonder aangeleverde officiële media tonen een herkenbare placeholder. De homepagefoto behoudt de donkere overlay voor de witte tekst. Gebruik geen gegenereerde of willekeurige stockfoto’s als beeld van het centrum.
 - Bezoekersinformatie en achtergrondteksten bevatten geen onbevestigde parkeerlocaties, tarieven, toegangsfaciliteiten, adressen, eigenaar of historische data. Deze kunnen na bevestiging gericht worden aangevuld.
+- [Informatiebronnen](docs/informatiebronnen.md) beschrijft de bevestigde gegevens, de nog te controleren onderwerpen en de benodigde webtoegang voor verder onderzoek.
 
 ## Vormgeving
 
