@@ -1,12 +1,42 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { sitePath } from "./paths";
+import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { basePath, sitePath } from "./paths";
+
+test("aangeleverde plattegrond wordt ongewijzigd geladen en kan zoomen en verschuiven", async ({ page, request }) => {
+  await page.goto(sitePath("/bezoekersinformatie"));
+  const region = page.getByRole("region", { name: "Bezoekersplattegrond" });
+  const map = region.getByRole("group", { name: "Interactieve plattegrond", exact: false });
+  await expect(map).toBeVisible();
+  await expect(map).toHaveAccessibleDescription(/Winkelposities op de tekening zijn nog niet bevestigd/);
+  await expect(region.getByRole("heading", { name: "Plattegrond nog niet beschikbaar" })).toHaveCount(0);
+  const source = `${basePath}/maps/de-vijfhoek-vastgoedplattegrond.svg`;
+  await expect(map.locator("image")).toHaveAttribute("href", source);
+  const response = await request.get(source);
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-type"]).toContain("image/svg+xml");
+  const digest = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
+  expect(digest(await response.body())).toBe(digest(await readFile("public/maps/de-vijfhoek-vastgoedplattegrond.svg")));
+  await page.evaluate(async (src) => { const image = new Image(); image.src = src; await image.decode(); }, source);
+  await expect(map).toHaveAttribute("viewBox", "0 0 1286.25 1284.749967");
+  await region.getByRole("button", { name: "Inzoomen", exact: true }).click();
+  await expect(region.getByLabel("Zoomniveau")).toHaveText("135%");
+  const drawing = map.locator(".floor-map-drawing");
+  const before = await drawing.getAttribute("transform");
+  await region.getByRole("button", { name: "Kaart naar links verschuiven" }).click();
+  expect(await drawing.getAttribute("transform")).not.toBe(before);
+  await region.getByRole("button", { name: "Volledige kaart tonen" }).click();
+  await expect(region.getByLabel("Zoomniveau")).toHaveText("100%");
+  await expect(map).toHaveAttribute("viewBox", "0 0 1286.25 1284.749967");
+});
 
 test("bezoekerskaart zoekt officiële nummers zonder onbevestigde winkelposities te publiceren", async ({ page }) => {
   await page.goto(sitePath("/bezoekersinformatie"));
   const map = page.getByRole("region", { name: "Bezoekersplattegrond" });
-  await expect(map.getByRole("heading", { name: "Plattegrond nog niet beschikbaar" })).toBeVisible();
-  await expect(map.locator(".floor-map-svg")).toHaveCount(0);
+  await expect(map.locator(".floor-map-svg")).toBeVisible();
+  await expect(map.locator(".floor-map-unit")).toHaveCount(0);
+  await expect(map.getByLabel("Legenda")).toHaveCount(0);
   await map.getByRole("searchbox").fill("141");
   const list = map.getByRole("list", { name: "Gevonden winkels en units" });
   await expect(list.getByRole("button")).toHaveCount(1);
@@ -39,6 +69,7 @@ test("volledige tekening wordt niet automatisch aan een verdieping toegewezen", 
     await expect(map.locator(".floor-map-svg")).toHaveCount(0);
   }
   await level.selectOption("overview");
+  await expect(map.locator(".floor-map-svg")).toBeVisible();
   await expect(map.getByRole("list").getByRole("button")).toHaveCount(10);
 });
 

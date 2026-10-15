@@ -151,12 +151,12 @@ export function MapCanvas({ plan, shops, selectedId, matchingIds, onSelect, canv
   return <div className="floor-map-canvas">
     <div className="floor-map-viewport" data-zoom={camera.zoom.toFixed(2)}>
       <svg ref={svgRef} className={`floor-map-svg ${camera.zoom > 1 ? "is-zoomed" : ""}`} viewBox={`${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`}
-        role="group" aria-labelledby={`${id}-title`} aria-describedby={`${id}-help`} tabIndex={0}
+        role="group" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description ${id}-help`} tabIndex={0}
         onKeyDown={mapKeys} onPointerDown={pointerDown} onPointerMove={pointerMove}
         onPointerUp={endPointer} onPointerCancel={endPointer} onLostPointerCapture={() => { drag.current = null; }}
         onPointerLeave={() => { if (drag.current && !drag.current.moved) drag.current = null; }}>
         <title id={`${id}-title`}>Interactieve plattegrond — {plan.label}</title>
-        <desc>Winkelruimtes zijn als knoppen te bedienen. Er zijn geen looproutes of voorzieningen toegevoegd.</desc>
+        <desc id={`${id}-description`}>{units.length ? "Winkelruimtes zijn als knoppen te bedienen. Er zijn geen looproutes of voorzieningen toegevoegd." : "Aangeleverde vastgoedplattegrond met zoom en verplaatsknoppen. Winkelposities op de tekening zijn nog niet bevestigd. Gebruik de zoeklijst voor winkelinformatie."}</desc>
         <g className="floor-map-drawing" transform={`translate(${camera.x} ${camera.y}) scale(${camera.zoom})`}>
           {plan.sourceImage && <image className="floor-map-source" href={assetPath(plan.sourceImage.src)} x={0} y={0} width={plan.sourceImage.width} height={plan.sourceImage.height} aria-hidden="true" />}
           {units.map((unit) => {
@@ -187,6 +187,6 @@ export function MapCanvas({ plan, shops, selectedId, matchingIds, onSelect, canv
       </div>
     </div>
     <p className="floor-map-help" id={`${id}-help`}>Zoom in met + en sleep om te verschuiven. Je kunt ook de pijlknoppen gebruiken.</p>
-    <details className="floor-map-keyboard"><summary>Bediening met het toetsenbord</summary><p>Tab opent de kaart en de knoppen. Op de kaart: + en − om te zoomen, pijltjestoetsen om te verschuiven en Home voor het overzicht. Bij een winkelruimte: pijltjestoetsen om naar een andere ruimte te gaan, Enter of spatie om te kiezen. Escape wist de selectie. Met Tab verlaat je de kaart.</p></details>
+    <details className="floor-map-keyboard"><summary>Bediening met het toetsenbord</summary><p>Tab opent de kaart en de knoppen. Op de kaart: + en − om te zoomen, pijltjestoetsen om te verschuiven en Home voor het overzicht. {units.length > 0 && "Bij een winkelruimte: pijltjestoetsen om naar een andere ruimte te gaan, Enter of spatie om te kiezen. "}Escape wist de selectie. Met Tab verlaat je de kaart.</p></details>
   </div>;
 }

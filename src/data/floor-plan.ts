@@ -34,17 +34,18 @@ export const mapFloors: { id: FloorId; label: string }[] = [
   { id: "first", label: "Eerste verdieping" },
 ];
 
-// These official numbers were supplied by the owner. The cleaned image has no
-// unit labels, so it cannot establish their boundaries or tenant positions.
-// Geometry stays empty until the numbered original is supplied. Do not infer a
-// floor for the complete drawing from a floor label on a particular section.
+// Display the supplied SVG unchanged, including its original coordinate system.
+// It embeds the cleaned plan as a PNG and has no unit labels or unit paths.
+// The owner supplied the numbers below separately; their positions stay empty
+// until the numbered drawing is available. Do not infer a floor for the whole
+// drawing from a floor label on a particular building section.
 export const floorPlans: FloorPlan[] = [{
   id: "overview",
   label: "Volledige vastgoedplattegrond",
   floor: null,
   source: "Door de opdrachtgever aangeleverde vastgoedplattegrond",
-  viewBox: { x: 0, y: 0, width: 1254, height: 1254 },
-  sourceImage: null,
+  viewBox: { x: 0, y: 0, width: 1286.25, height: 1284.749967 },
+  sourceImage: { src: "/maps/de-vijfhoek-vastgoedplattegrond.svg", width: 1286.25, height: 1284.749967 },
   units: ["1", "5", "9", "15", "17", "19", "33", "35", "75", "141"].map((unitNumber) => ({
     id: `unit-${unitNumber}`,
     unitNumber,

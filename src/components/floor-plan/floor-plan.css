@@ -22,7 +22,7 @@
 .floor-map-svg.is-zoomed { touch-action: none; cursor: grab; }
 .floor-map-svg.is-zoomed:active { cursor: grabbing; }
 .floor-map-svg:focus-visible { outline: 3px solid #32624a; outline-offset: -3px; }
-.floor-map-source { filter: grayscale(1); pointer-events: none; }
+.floor-map-source { pointer-events: none; }
 .floor-map-unit path { fill: #eef1ef; stroke: #626e67; stroke-width: 1.5; cursor: pointer; }
 .floor-map-unit.has-source path { fill: transparent; stroke: transparent; }
 .floor-map-unit text { fill: #222a25; font: 500 24px Arial, Helvetica, sans-serif; pointer-events: none; }

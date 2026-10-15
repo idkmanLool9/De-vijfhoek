@@ -43,12 +43,12 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 | `/eten-en-drinken` | Horeca-informatie; wacht op bevestigde zaken |
 | `/nieuws` | Nieuws en evenementen met filters |
 | `/nieuws/[slug]` | Detailtemplate voor bevestigde publicaties |
-| `/bezoekersinformatie` | Onderwerpen, plattegrondplaceholder en FAQ |
+| `/bezoekersinformatie` | Praktische onderwerpen, plattegrond met zoom en FAQ |
 | `/over-de-vijfhoek` | Centruminformatie en contactsecties |
 
 ## Gegevens en officiële media
 
-De bezoekerspagina bevat een kaartinterface voor zoeken, selectie en winkelinformatie. De interactieve SVG-component ondersteunt zoom, verschuiven en toetsenbordbediening. De originele genummerde vastgoedplattegrond is nog nodig voor de echte contouren en winkelposities; de opgeschoonde afbeelding bepaalt geen officiële unitkoppelingen. Tot die tijd toont de publieke kaart een lege toestand. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
+De bezoekerspagina toont de aangeleverde vastgoedplattegrond met zoom, verschuiven en toetsenbordbediening. Het SVG-bestand staat ongewijzigd onder `public/maps/`. Winkels en aangeleverde unitnummers zijn doorzoekbaar; winkelposities en afzonderlijke verdiepingen worden pas na bevestiging gekoppeld. Het aangeleverde SVG bevat geen unitlabels, dus voor klikbare winkelgrenzen blijft de genummerde tekening nodig. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
 
 Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van officiële foto’s en logo’s, beschrijvingen en uitsneden. Keuzes worden lokaal in de browser bewaard en kunnen als ZIP-pakket worden geëxporteerd en teruggezet. Ze worden pas voor iedereen zichtbaar nadat het pakket in de repository is verwerkt en gedeployed. Zie [Foto’s bewerken](docs/fotos-bewerken.md) voor gebruik, overdracht en het later verwijderen van de editor.
 
