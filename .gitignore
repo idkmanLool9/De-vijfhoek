@@ -1,5 +1,9 @@
 node_modules/
 .next/
+.open-next/
+.wrangler/
+.dev.vars*
+wrangler-debug.log*
 out/
 coverage/
 playwright-report/

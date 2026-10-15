@@ -66,4 +66,38 @@ npm run build
 npm start
 ```
 
-De website heeft paginatitels, beschrijvingen, Nederlandse taalinstelling, leesbare routes en echte 404-responses. Er is nog geen productiedomein opgegeven. Hosting, domeinkoppeling en publicatie vallen buiten deze implementatie.
+De website heeft paginatitels, beschrijvingen, Nederlandse taalinstelling, leesbare routes en echte 404-responses.
+
+## Live bekijken via Cloudflare
+
+Cloudflare Workers is geconfigureerd met de OpenNext-adapter. De volledige uitleg staat in [docs/cloudflare.md](docs/cloudflare.md).
+
+Koppel in het [Cloudflare Dashboard](https://dash.cloudflare.com/) deze GitHub-repository aan een Worker met deze instellingen:
+
+| Instelling | Waarde |
+| --- | --- |
+| Repository | `idkmanLool9/De-vijfhoek` |
+| Productiebranch | `main` |
+| Workernaam | `de-vijfhoek` |
+| Rootdirectory | repository-root (`/`) |
+| Buildcommando | `npm run build:cloudflare` |
+| Deploycommando | `npx opennextjs-cloudflare deploy` |
+| Node.js | 24 via de bestaande `.nvmrc` |
+
+Klik op **Deploy**. Open na een succesvolle deployment de door Cloudflare getoonde `workers.dev`-URL om de website live te bekijken. De precieze URL hangt af van je Cloudflare-account. Een eigen domein kun je later via de Worker-instellingen koppelen. Nieuwe commits op `main` kunnen automatisch worden gebouwd en gepubliceerd via de GitHub-koppeling.
+
+Er zijn geen applicatiesecrets, database, R2-bucket of Cloudflare Images-dienst nodig. Voor deployment gebruik je je eigen Cloudflare-account; GitHub-toegang en Cloudflare-toegang zijn afzonderlijke koppelingen.
+
+Lokaal de Cloudflare-versie controleren:
+
+```bash
+npm run build:cloudflare
+npm run preview:cloudflare
+```
+
+Of vanaf je eigen computer deployen:
+
+```bash
+npx wrangler login
+npm run deploy:cloudflare
+```
