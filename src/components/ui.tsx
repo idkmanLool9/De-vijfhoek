@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ChevronRight, ImageIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { MediaImage, MediaHero, MediaPending } from "./media-image";
 
 export function ActionLink({ href, children, variant = "dark", className = "" }: {
   href: string; children: ReactNode; variant?: "dark" | "light" | "outline" | "plain"; className?: string;
@@ -10,13 +11,14 @@ export function ActionLink({ href, children, variant = "dark", className = "" }:
   </Link>;
 }
 
-export function PhotoPlaceholder({ label, dark = false, className = "" }: {
-  label: string; dark?: boolean; className?: string;
+export function PhotoPlaceholder({ label, dark = false, className = "", mediaId, src }: {
+  label: string; dark?: boolean; className?: string; mediaId?: string; src?: string | null;
 }) {
-  return <div className={`photo-placeholder ${dark ? "photo-dark" : ""} ${className}`} role="img" aria-label={`Fotoplaceholder: ${label}`}>
+  const placeholder = <div className={`photo-placeholder ${dark ? "photo-dark" : ""} ${className}`} role="img" aria-label={`Fotoplaceholder: ${label}`}>
     <ImageIcon size={24} strokeWidth={1.25} aria-hidden="true" />
     <span>{label}<small>Officiële foto volgt</small></span>
   </div>;
+  return mediaId ? <MediaImage id={mediaId} fallbackSrc={src} alt={label} className={`official-photo ${className}`} fallback={placeholder} /> : placeholder;
 }
 
 export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
@@ -29,11 +31,11 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
 }
 
 export function PageHero({ title, description }: { title: string; description: string }) {
-  return <section className="page-hero">
+  return <MediaHero className="page-hero">
     <div className="container"><h1>{title}</h1><p>{description}</p>
-      <span className="hero-photo-label"><ImageIcon size={14} aria-hidden="true" /> Officiële centrumfoto volgt</span>
+      <MediaPending id="centrum-hero"><span className="hero-photo-label"><ImageIcon size={14} aria-hidden="true" /> Officiële centrumfoto volgt</span></MediaPending>
     </div>
-  </section>;
+  </MediaHero>;
 }
 
 export function SectionHeading({ eyebrow, title, description, children }: {

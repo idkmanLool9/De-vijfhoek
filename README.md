@@ -48,6 +48,8 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 
 ## Gegevens en officiële media
 
+Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van officiële foto’s en logo’s, beschrijvingen en uitsneden. Keuzes worden lokaal in de browser bewaard en kunnen als ZIP-pakket worden geëxporteerd en teruggezet. Ze worden pas voor iedereen zichtbaar nadat het pakket in de repository is verwerkt en gedeployed. Zie [Foto’s bewerken](docs/fotos-bewerken.md) voor gebruik, overdracht en het later verwijderen van de editor.
+
 - `src/data/shops.ts`: de zes door de opdrachtgever bevestigde winkels. Voeg een object met unieke `slug` toe voor een nieuwe bevestigde winkel. Categorieën staan in hetzelfde bestand; zoekresultaataantallen worden uit de data berekend.
 - Onbekende vestigingsgegevens zijn `null`. Telefoon-, e-mail-, website-, openingstijden- en voorzieningensecties tonen uitsluitend ingevulde, bevestigde informatie. Voorlopig zijn er geen bevestigde contactgegevens of openingstijden opgenomen.
 - `src/data/news.ts`: uitsluitend redactioneel bevestigde publicaties toevoegen, met ISO-publicatiedatum, unieke slug, `verified: true` en `status: "published"`. Alleen die berichten zijn publiek zichtbaar. Zonder bevestigde berichten geeft een nieuwsdetailroute 404; er worden geen voorbeeldartikelen gepubliceerd. De detailtemplate is gebouwd en compileert, maar kan pas met echte inhoud functioneel worden gecontroleerd.

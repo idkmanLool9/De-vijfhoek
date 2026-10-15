@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { MediaProvider } from "@/components/media-provider";
+import { MediaPreviewNotice } from "@/components/media-preview-notice";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,6 +13,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="nl"><body>
     <a className="skip-link" href="#inhoud">Ga naar inhoud</a>
-    <Header /><main id="inhoud" tabIndex={-1}>{children}</main><Footer />
+    <MediaProvider><MediaPreviewNotice /><Header /><main id="inhoud" tabIndex={-1}>{children}</main><Footer /></MediaProvider>
   </body></html>;
 }

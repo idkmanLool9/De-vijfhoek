@@ -54,6 +54,19 @@ svg { flex-shrink: 0; }
 .menu-toggle, .mobile-menu { display: none; }
 .home-hero { background: #2e3030; color: white; min-height: 530px; display: flex; align-items: center; }
 .hero-content { padding-block: 70px 38px; }
+.site-media { position: relative; }
+.brand-logo { width: 160px; height: 48px; }
+.shop-logo-media { width: 100%; height: 100%; }
+.media-hero { position: relative; isolation: isolate; }
+.hero-image, .hero-overlay { position: absolute; inset: 0; pointer-events: none; }
+.hero-image { z-index: -2; }
+.hero-overlay { z-index: -1; background: rgb(0 0 0 / 62%); }
+.media-preview-notice { background: #f5f5f5; border-bottom: 1px solid #d5d5d5; padding-block: 12px; font-size: 12px; }
+.media-preview-notice .container { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.media-preview-notice p { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.media-preview-notice span { color: #555; }
+.media-preview-notice .container > div { display: flex; flex-wrap: wrap; gap: 12px; }
+.media-preview-notice a, .media-preview-notice button { background: none; border: none; padding: 0; text-decoration: underline; text-underline-offset: 3px; font-size: 12px; white-space: nowrap; }
 .home-hero .eyebrow { margin-bottom: 14px; }
 .home-hero h1 { max-width: 800px; line-height: 1.04; letter-spacing: -.045em; }
 .hero-intro { font-size: 18px; line-height: 1.65; margin-top: 22px; color: #f1f1f1; }
@@ -215,6 +228,7 @@ svg { flex-shrink: 0; }
   .home-hero { min-height: 490px; } .hero-content { padding-top: 55px; } .home-hero h1 { font-size: 52px; } .shortcut-grid { gap: 16px; } .shortcut-body { padding: 18px; } .photo-placeholder { min-height: 135px; padding: 14px; gap: 8px; } .photo-placeholder > svg { width: 20px; } .footer-grid { gap: 36px; }
 }
 @media (max-width: 639px) {
+  .brand-logo { width: 115px; height: 40px; } .media-preview-notice .container { flex-direction: column; align-items: flex-start; gap: 8px; } .media-preview-notice { font-size: 11px; }
   .page-content { padding-bottom: 40px; } .shop-grid, .news-grid, .visitor-grid, .shop-info-grid, .about-info-grid { grid-template-columns: 1fr; gap: 18px; } .filter-list { gap: 7px; margin-block: 20px; } .filter-button { font-size: 11px; padding: 8px 12px; } .search-field input { font-size: 12px; } .shop-card .photo-placeholder, .shop-card .official-photo { min-height: 165px; } .shop-card-body { padding: 20px; } .results-heading { gap: 12px; } .results-heading p { font-size: 11px; } .reset-button { font-size: 11px; } .shop-detail-top { grid-template-columns: 1fr; gap: 30px; } .shop-gallery .shop-main-photo { min-height: 250px; } .shop-title h1 { font-size: 29px; } .shop-description { font-size: 14px; } .hours-panel { padding: 20px; } .shop-info-grid, .about-info-grid { margin-top: 28px; } .info-card { flex-direction: row; gap: 17px; padding: 23px; } .editorial-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 0; } .editorial-grid h2 { font-size: 27px; } .editorial-grid p:not(.eyebrow) { font-size: 14px; } .editorial-photo { min-height: 240px; } .empty-state { padding: 40px 23px; } .empty-state h2 { font-size: 23px; } .empty-state p:not(.eyebrow) { font-size: 13px; } .news-filters { margin-top: 0; } .visitor-card { padding: 24px; } .visitor-card div > svg { margin-top: 14px; } .visitor-sections { margin-top: 35px; } .topic-heading { gap: 12px; } .topic-heading h2 { font-size: 23px; } .visitor-sections > section { padding-block: 25px; } .map-placeholder { min-height: 230px; padding: 25px; } .map-placeholder strong { font-size: 15px; } .map-placeholder span { font-size: 11px; } .article-photo { min-height: 230px; } .article-lead { font-size: 17px; } .not-found { padding-block: 65px; }
   body { font-size: 14px; } .container { width: calc(100% - 40px); } .header-inner { height: 74px; gap: 10px; } .brand svg { width: 28px; } .brand strong { font-size: 12px; } .brand small { font-size: 8px; } .header-actions { gap: 4px; } .header-visit { font-size: 10px; min-height: 36px; padding: 9px 12px; gap: 7px; } .header-visit svg { width: 12px; } .icon-button { width: 40px; height: 40px; } .mobile-menu:not([hidden]) { padding-inline: 20px; }
   .home-hero { min-height: 460px; } .hero-content { padding-block: 45px 28px; } .home-hero h1 { font-size: clamp(32px, 8.3vw, 48px); } .eyebrow { font-size: 10px; } .hero-intro { font-size: 15px; margin-top: 19px; } .desktop-break { display: none; } .hero-buttons { gap: 10px; margin-top: 24px; } .hero-buttons .button { font-size: 12px; padding-inline: 17px; gap: 9px; } .home-hero .hero-photo-label { margin-top: 32px; font-size: 9px; }

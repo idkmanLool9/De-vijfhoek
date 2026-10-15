@@ -5,6 +5,7 @@ import { ArrowRight, Clock3, MapPin, Phone, ListChecks, ExternalLink, Mail } fro
 import { shops, getShop } from "@/data/shops";
 import { Breadcrumbs } from "@/components/ui";
 import { ShopLogo, ShopPhoto } from "@/components/shop-card";
+import { MediaPending } from "@/components/media-image";
 
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -18,7 +19,7 @@ export default async function ShopPage({ params }: Props) {
   const shop = getShop((await params).slug);
   if (!shop) notFound();
   return <div className="container page-content"><Breadcrumbs items={[{ label: "Winkels", href: "/winkels" }, { label: shop.name }]} />
-    <div className="shop-detail-top"><div className="shop-gallery"><ShopPhoto shop={shop} className="shop-main-photo" /><p className="content-note">Officiële winkelfoto’s worden hier toegevoegd zodra ze beschikbaar zijn.</p></div>
+    <div className="shop-detail-top"><div className="shop-gallery"><ShopPhoto shop={shop} className="shop-main-photo" /><MediaPending id={`winkel-${shop.slug}-foto`} fallbackSrc={shop.photo}><p className="content-note">Officiële winkelfoto’s worden hier toegevoegd zodra ze beschikbaar zijn.</p></MediaPending></div>
       <div className="shop-introduction"><div className="shop-title"><ShopLogo shop={shop} /><div><h1>{shop.name}</h1><p>{shop.categoryLabel}</p></div></div><p className="shop-description">{shop.description}</p>
         {shop.website && <a href={shop.website} className="button button-plain" target="_blank" rel="noopener noreferrer">Naar de website<span className="sr-only"> (opent in een nieuw tabblad)</span><ExternalLink size={16} aria-hidden="true" /></a>}
         <section className="hours-panel" aria-labelledby="hours-title"><h2 id="hours-title"><Clock3 size={22} strokeWidth={1.5} aria-hidden="true" />Openingstijden</h2>{shop.openingHours?.length ? <dl className="hours-list">{shop.openingHours.map(({ day, hours }) => <div key={day}><dt>{day}</dt><dd>{hours}</dd></div>)}</dl> : <p>De openingstijden van deze vestiging zijn nog niet bevestigd. Ze worden hier toegevoegd zodra ze beschikbaar zijn.</p>}</section>
