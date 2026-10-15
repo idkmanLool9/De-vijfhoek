@@ -1,12 +1,13 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, Map, Search, X } from "lucide-react";
+import { Suspense, useCallback, useEffect, useId, useRef, useState } from "react";
+import { ArrowDown, ArrowUpRight, ChevronDown, Map, Search, X } from "lucide-react";
 import { floorPlans, isPlacedMapUnit, mapFloors, type FloorPlan } from "@/data/floor-plan";
 import { shops as confirmedShops, type Shop } from "@/data/shops";
 import { mapUnitName, matchesMapUnit, normalizeMapSearch } from "@/lib/floor-plan";
 import { MapCanvas, type MapCanvasHandle } from "./map-canvas";
 import { UnitDetails } from "./unit-details";
+import { MapUrlSelection } from "./map-url-selection";
 import "./floor-plan.css";
 
 type Selection = { kind: "unit"; id: string } | { kind: "shop"; slug: string } | null;
@@ -14,6 +15,7 @@ type Selection = { kind: "unit"; id: string } | { kind: "shop"; slug: string } |
 export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { plans?: FloorPlan[]; shops?: Shop[] }) {
   const id = useId();
   const canvas = useRef<MapCanvasHandle>(null);
+  const pendingLinkedUnit = useRef<string | null>(null);
   const [level, setLevel] = useState(plans.find((plan) => plan.floor === null)?.id ?? plans[0]?.floor ?? "ground");
   const [query, setQuery] = useState("");
   const [selection, setSelection] = useState<Selection>(null);
@@ -29,6 +31,23 @@ export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { pla
   const floorLabel = plan?.label ?? mapFloors.find((floor) => floor.id === level)?.label ?? "Plattegrond";
   const selectionAnnouncement = selectedUnit ? `${mapUnitName(selectedUnit, selectedShop)}${selectedShop ? `, unit ${selectedUnit.unitNumber}` : ""} geselecteerd.${!selectedUnit.geometry ? " Locatie op de kaart nog niet bevestigd." : ""}` : selectedShop ? `${selectedShop.name} geselecteerd. Locatie op de kaart nog niet bevestigd.` : "Geen winkel of unit geselecteerd.";
 
+  const selectLinkedUnit = useCallback((number: string) => {
+    const linkedPlan = plans.find((plan) => plan.units.some((unit) => unit.unitNumber === number));
+    const unit = linkedPlan?.units.find((unit) => unit.unitNumber === number);
+    if (!linkedPlan || !unit) return;
+    const shop = shops.find((shop) => shop.slug === unit.shopSlug);
+    pendingLinkedUnit.current = unit.id;
+    setLevel(linkedPlan.floor ?? linkedPlan.id);
+    setQuery(shop?.name ?? `Unit ${unit.unitNumber}`);
+    setSelection({ kind: "unit", id: unit.id });
+  }, [plans, shops]);
+
+  useEffect(() => {
+    if (!selectedUnit || pendingLinkedUnit.current !== selectedUnit.id) return;
+    pendingLinkedUnit.current = null;
+    if (isPlacedMapUnit(selectedUnit)) canvas.current?.reveal(selectedUnit);
+  }, [selection, selectedUnit]);
+
   function chooseUnit(unitId: string) {
     const unit = plan?.units.find((unit) => unit.id === unitId);
     if (!unit) return;
@@ -37,6 +56,7 @@ export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { pla
   }
 
   return <div className="floor-map" role="region" aria-label="Bezoekersplattegrond">
+    <Suspense fallback={null}><MapUrlSelection onSelect={selectLinkedUnit} /></Suspense>
     <div className="floor-map-toolbar">
       <div className="floor-map-search"><Search size={18} aria-hidden="true" /><label className="sr-only" htmlFor={`${id}-search`}>Zoek op winkelnaam of unitnummer</label><input id={`${id}-search`} type="search" placeholder="Zoek winkel of unitnummer…" value={query} onChange={(event) => setQuery(event.target.value)} autoComplete="off" aria-controls={`${id}-results`} />{query && <button type="button" aria-label="Zoekopdracht op kaart wissen" onClick={() => setQuery("")}><X size={17} aria-hidden="true" /></button>}</div>
       <div className="floor-map-level"><label htmlFor={`${id}-floor`}>Kaart / verdieping</label><div><select id={`${id}-floor`} value={level} onChange={(event) => { setLevel(event.target.value); setSelection(null); }}>
@@ -48,10 +68,11 @@ export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { pla
       <div className="floor-map-main">
         {hasGeometry && plan ? <><MapCanvas key={plan.id} plan={plan} shops={shops} selectedId={selectedUnit?.id ?? null} matchingIds={search ? units.map((unit) => unit.id) : null} onSelect={(unitId) => setSelection(unitId ? { kind: "unit", id: unitId } : null)} canvasRef={canvas} />{hasPlacedUnits && <div className="floor-map-legend" aria-label="Legenda"><span><i className="floor-map-swatch" />Winkelruimte</span><span><i className="floor-map-swatch selected" />Geselecteerd</span></div>}</> :
           <div className="floor-map-unavailable" role="status"><Map size={36} strokeWidth={1.2} aria-hidden="true" /><span className="floor-map-kicker">{floorLabel}</span><h3>Plattegrond nog niet beschikbaar</h3><p>{plan ? "De plattegrond wordt voorbereid. Je kunt alvast winkels en unitnummers opzoeken. Bevestigde winkelposities volgen." : "Er is nog geen bevestigde plattegrond voor deze verdieping beschikbaar."}</p></div>}
+        {(selectedUnit || selectedShop) && <a href={`#${id}-details`} className="floor-map-details-link text-link">Bekijk winkelinformatie<ArrowDown size={15} aria-hidden="true" /></a>}
         {plan && <p className="floor-map-source-note">{hasPlacedUnits ? "Winkelkoppelingen volgens de opdrachtgever. Units zonder bevestigde winkel tonen alleen hun nummer. Dit overzicht bevat meerdere gebouwdelen; afzonderlijke verdiepingskaarten volgen." : "Verdiepingen en winkelposities worden nog bevestigd."}</p>}
       </div>
       <aside className="floor-map-sidebar" aria-label="Winkels en units opzoeken">
-        <UnitDetails unit={selectedUnit} shop={selectedShop} onClear={() => setSelection(null)} />
+        <UnitDetails id={`${id}-details`} unit={selectedUnit} shop={selectedShop} onClear={() => setSelection(null)} />
         <div className="floor-map-results" id={`${id}-results`}><div className="floor-map-results-heading"><h3>{search ? "Zoekresultaten" : "Units"}</h3><span role="status" aria-live="polite">{search ? `${resultCount} ${resultCount === 1 ? "resultaat" : "resultaten"}` : `${units.length} ${units.length === 1 ? "unitnummer" : "unitnummers"}`}</span></div>
           {(units.length || matchingShops.length) ? <ul aria-label="Gevonden winkels en units">{units.map((unit) => {
             const shop = shops.find((shop) => shop.slug === unit.shopSlug);

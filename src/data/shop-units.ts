@@ -13,7 +13,11 @@ export const shopUnitAllocations = [
 ] as const;
 
 export function getShopUnitLabel(slug: string): string | null {
-  const allocation = shopUnitAllocations.find((item) => item.shopSlug === slug);
-  if (!allocation) return null;
-  return `${allocation.unitNumbers.length === 1 ? "Unit" : "Units"} ${allocation.unitNumbers.join(" en ")}`;
+  const numbers = getShopUnitNumbers(slug);
+  if (!numbers.length) return null;
+  return `${numbers.length === 1 ? "Unit" : "Units"} ${numbers.join(" en ")}`;
+}
+
+export function getShopUnitNumbers(slug: string): readonly string[] {
+  return shopUnitAllocations.find((item) => item.shopSlug === slug)?.unitNumbers ?? [];
 }

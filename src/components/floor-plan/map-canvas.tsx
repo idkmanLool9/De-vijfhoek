@@ -164,7 +164,7 @@ export function MapCanvas({ plan, shops, selectedId, matchingIds, onSelect, canv
         onKeyDown={mapKeys} onPointerDown={pointerDown} onPointerMove={pointerMove}
         onPointerUp={endPointer} onPointerCancel={endPointer} onLostPointerCapture={() => { drag.current = null; }}
         onPointerLeave={() => { if (drag.current && !drag.current.moved) drag.current = null; }}>
-        <title id={`${id}-title`}>Interactieve plattegrond — {plan.label}</title>
+        <title id={`${id}-title`}>{`Interactieve plattegrond — ${plan.label}`}</title>
         <desc id={`${id}-description`}>{units.length ? "Winkelruimtes zijn als knoppen te bedienen. Er zijn geen looproutes of voorzieningen toegevoegd." : "Aangeleverde vastgoedplattegrond met zoom en verplaatsknoppen. Winkelposities op de tekening zijn nog niet bevestigd. Gebruik de zoeklijst voor winkelinformatie."}</desc>
         <g className="floor-map-drawing" transform={`translate(${camera.x} ${camera.y}) scale(${camera.zoom})`}>
           {plan.sourceImage && <image className="floor-map-source" href={assetPath(plan.sourceImage.src)} x={0} y={0} width={plan.sourceImage.width} height={plan.sourceImage.height} aria-hidden="true" />}

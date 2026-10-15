@@ -23,6 +23,9 @@
 .floor-map-svg.is-zoomed:active { cursor: grabbing; }
 .floor-map-svg:focus-visible { outline: 3px solid #32624a; outline-offset: -3px; }
 .floor-map-source { pointer-events: none; }
+.floor-map .floor-map-details-link { display: none; }
+.floor-map-details { scroll-margin-top: 16px; }
+.floor-map-details:focus-visible { outline: 2px solid #32624a; outline-offset: -3px; }
 .floor-map-unit path { fill: #eef1ef; stroke: #626e67; stroke-width: 1.5; cursor: pointer; }
 .floor-map-unit.has-source path { fill: transparent; stroke: transparent; }
 .floor-map-unit text { fill: #222a25; font: 500 24px Arial, Helvetica, sans-serif; pointer-events: none; }
@@ -90,6 +93,7 @@
   .floor-map-details { padding: 21px; }
 }
 @media (max-width: 800px) {
+  .floor-map .floor-map-details-link { display: inline-flex; margin-top: 16px; min-height: 44px; font-size: 13px; }
   .floor-map-layout { grid-template-columns: minmax(0, 1fr); }
   .floor-map-sidebar { border-left: 0; border-top: 1px solid var(--line, #e5e5e5); display: grid; grid-template-columns: 1fr 1fr; }
   .floor-map-details { border-bottom: 0; border-right: 1px solid var(--line, #e5e5e5); }

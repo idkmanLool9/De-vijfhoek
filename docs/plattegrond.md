@@ -32,6 +32,10 @@ De volledige vastgoedtekening blijft één overzicht (`floor: null`). Een vermel
 
 De kaart en winkelgids gebruiken dezelfde koppelingen. Bakkerij Nollen, Gall & Gall en G&W Gezondheids Winkel Rozemarijn hebben eigen statische winkelpagina’s. Rozemarijn is door de opdrachtgever expliciet als gebruiker van unit 13 bevestigd. Het compacte kaartlabel luidt **G&W Rozemarijn**; het informatiepaneel, de zoeklijst en winkelpagina tonen de volledige naam. Unitnummers worden niet gebruikt als vervanging voor een bevestigd volledig vestigingsadres. Ontbrekende contactgegevens, openingstijden en voorzieningen blijven leeg.
 
+Winkelpagina’s linken rechtstreeks naar `/bezoekersinformatie/?unit=13#plattegrond` (met het juiste basepad bij GitHub Pages). De kaart selecteert de bevestigde unit en zoomt erop in. De zoeklijst toont de gekoppelde winkel, inclusief beide units bij Scapino en Wibra; de eerste bevestigde unit wordt bij de ingang vanuit de winkelpagina geselecteerd. Onbekende unitnummers in de URL maken geen nieuwe ruimte of toewijzing aan. Herladen en browsergeschiedenis blijven werken. De URL-hook staat in een afzonderlijke `Suspense`-grens, zodat de eigenlijke kaart en oorspronkelijke beeldlaag in het statische HTML behouden blijven.
+
+Op mobiel verschijnt bij een selectie **Bekijk winkelinformatie**, een link naar het informatiepaneel met toetsenbordfocus. De bestaande zoeklijst en kaartbediening blijven beschikbaar.
+
 De overige zichtbare genummerde ruimtes tonen alleen **Unit [nummer]**, met `shopSlug: null`. Er zijn geen winkelnamen voor onbekende units bedacht. Nieuwe toewijzingen mogen na bevestiging worden toegevoegd aan de centrale lijst; nieuwe geometrie alleen met een herkenbare genummerde bron.
 
 ## Componenten en bediening

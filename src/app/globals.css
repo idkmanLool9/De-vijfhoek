@@ -128,14 +128,17 @@ svg { flex-shrink: 0; }
 .shop-grid, .news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .shop-card { border: 1px solid var(--line); border-radius: 7px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .18s; }
 .shop-card:hover { border-color: #929494; }
+.shop-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.shop-card:is(:hover, :focus-visible) h2 { text-decoration: underline; text-underline-offset: 3px; }
 .shop-card .photo-placeholder, .shop-card .official-photo { min-height: 180px; }
-.shop-card-body { display: flex; align-items: center; gap: 12px; padding: 18px; flex: 1; }
+.shop-card-body { display: flex; align-items: center; gap: 12px; padding: 18px; flex: 1; min-height: 104px; }
 .shop-card-body > div:not(.shop-logo) { flex: 1; min-width: 0; }
-.shop-card-body h2 { font-size: 16px; letter-spacing: -.02em; }
+.shop-card-body h2 { font-size: 16px; letter-spacing: -.02em; line-height: 1.35; }
 .shop-card-body p { font-size: 12px; margin-top: 5px; color: var(--muted); }
-.shop-card-body > svg { margin-left: auto; }
+.shop-card-body > svg { margin-left: auto; flex-shrink: 0; }
 .shop-logo { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border: 1px dashed #d2d2d2; border-radius: 4px; flex-shrink: 0; }
 .shop-logo span { font-size: 9px; line-height: 1.4; text-align: center; color: #727474; }
+.shop-logo:has(.site-media) { width: 68px; height: 48px; border: 0; background: #fff; }
 .shop-logo img { max-width: 100%; height: auto; max-height: 100%; object-fit: contain; }
 .official-photo { position: relative; min-height: 150px; background: #f1f2f2; }
 .official-photo img { object-fit: cover; }
@@ -149,9 +152,11 @@ svg { flex-shrink: 0; }
 .shop-gallery .content-note { margin-top: 12px; }
 .shop-title { display: flex; gap: 20px; align-items: center; }
 .shop-title .shop-logo { width: 65px; height: 65px; }
+.shop-title .shop-logo:has(.site-media) { width: 88px; height: 64px; }
 .shop-title h1 { font-size: 33px; }
 .shop-title p { font-size: 14px; color: var(--muted); margin-top: 4px; }
 .shop-description { margin-block: 24px 20px; font-size: 15px; color: #55585a; }
+.shop-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hours-panel { background: #f7f7f7; padding: 24px; border-radius: 6px; margin-top: 24px; }
 .hours-panel h2 { display: flex; align-items: center; gap: 15px; font-size: 17px; letter-spacing: -.015em; }
 .hours-panel > p { font-size: 13px; color: var(--muted); margin-top: 15px; }
@@ -226,6 +231,10 @@ svg { flex-shrink: 0; }
   .home-hero { min-height: 490px; } .hero-content { padding-top: 55px; } .home-hero h1 { font-size: 52px; } .shortcut-grid { gap: 16px; } .shortcut-body { padding: 18px; } .photo-placeholder { min-height: 135px; padding: 14px; gap: 8px; } .photo-placeholder > svg { width: 20px; } .footer-grid { gap: 36px; }
 }
 @media (max-width: 639px) {
+  .shop-logo:has(.site-media) { width: 60px; height: 46px; }
+  .shop-title .shop-logo:has(.site-media) { width: 72px; height: 56px; }
+  .directory .search-field input { font-size: 16px; }
+  .directory .filter-button { min-height: 44px; font-size: 12px; }
   .brand-logo { width: 115px; height: 40px; } .media-preview-notice .container { flex-direction: column; align-items: flex-start; gap: 8px; } .media-preview-notice { font-size: 11px; }
   .page-content { padding-bottom: 40px; } .shop-grid, .news-grid, .visitor-grid, .shop-info-grid, .about-info-grid { grid-template-columns: 1fr; gap: 18px; } .filter-list { gap: 7px; margin-block: 20px; } .filter-button { font-size: 11px; padding: 8px 12px; } .search-field input { font-size: 12px; } .shop-card .photo-placeholder, .shop-card .official-photo { min-height: 165px; } .shop-card-body { padding: 20px; } .results-heading { gap: 12px; } .results-heading p { font-size: 11px; } .reset-button { font-size: 11px; } .shop-detail-top { grid-template-columns: 1fr; gap: 30px; } .shop-gallery .shop-main-photo { min-height: 250px; } .shop-title h1 { font-size: 29px; } .shop-description { font-size: 14px; } .hours-panel { padding: 20px; } .shop-info-grid, .about-info-grid { margin-top: 28px; } .info-card { flex-direction: row; gap: 17px; padding: 23px; } .editorial-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 0; } .editorial-grid h2 { font-size: 27px; } .editorial-grid p:not(.eyebrow) { font-size: 14px; } .editorial-photo { min-height: 240px; } .empty-state { padding: 40px 23px; } .empty-state h2 { font-size: 23px; } .empty-state p:not(.eyebrow) { font-size: 13px; } .news-filters { margin-top: 0; } .visitor-card { padding: 24px; } .visitor-card div > svg { margin-top: 14px; } .visitor-sections { margin-top: 35px; } .topic-heading { gap: 12px; } .topic-heading h2 { font-size: 23px; } .visitor-sections > section { padding-block: 25px; } .article-photo { min-height: 230px; } .article-lead { font-size: 17px; } .not-found { padding-block: 65px; }
   body { font-size: 14px; } .container { width: calc(100% - 40px); } .header-inner { height: 74px; gap: 10px; } .brand svg { width: 28px; } .brand strong { font-size: 12px; } .brand small { font-size: 8px; } .header-actions { gap: 4px; } .header-visit { font-size: 10px; min-height: 36px; padding: 9px 12px; gap: 7px; } .header-visit svg { width: 12px; } .icon-button { width: 40px; height: 40px; } .mobile-menu:not([hidden]) { padding-inline: 20px; }

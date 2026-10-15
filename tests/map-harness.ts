@@ -28,7 +28,7 @@ export const test = base.extend<object, { mapHarness: string }>({
         format: "esm",
         platform: "browser",
         jsx: "automatic",
-        alias: { "next/link": resolve("tests/fixtures/map-link.tsx") },
+        alias: { "next/link": resolve("tests/fixtures/map-link.tsx"), "next/navigation": resolve("tests/fixtures/map-navigation.tsx") },
         define: { "process.env.NODE_ENV": '"production"', "process.env.NEXT_PUBLIC_BASE_PATH": '""' },
         logLevel: "silent",
       });

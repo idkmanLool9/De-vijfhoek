@@ -15,6 +15,6 @@ export function ShopLogo({ shop }: { shop: Shop }) {
 export function ShopCard({ shop }: { shop: Shop }) {
   return <Link href={`/winkels/${shop.slug}`} className="shop-card">
     <ShopPhoto shop={shop} />
-    <div className="shop-card-body"><ShopLogo shop={shop} /><div><h2>{shop.name}</h2><p>{shop.categoryLabel}</p></div><ArrowRight size={17} aria-hidden="true" /></div>
+    <div className="shop-card-body"><ShopLogo shop={shop} /><div><h2>{shop.name}</h2><p>{shop.categoryLabel}{shop.unit && <><span aria-hidden="true"> · </span><span className="sr-only">, </span>{shop.unit}</>}</p></div><ArrowRight size={17} aria-hidden="true" /></div>
   </Link>;
 }

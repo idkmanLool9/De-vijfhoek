@@ -5,6 +5,8 @@ import { readFile } from "node:fs/promises";
 import { basePath, sitePath } from "./paths";
 
 test("aangeleverde plattegrond wordt ongewijzigd geladen en kan zoomen en verschuiven", async ({ page, request }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(sitePath("/bezoekersinformatie"));
   const region = page.getByRole("region", { name: "Bezoekersplattegrond" });
   const map = region.getByRole("group", { name: "Interactieve plattegrond", exact: false });
@@ -30,6 +32,7 @@ test("aangeleverde plattegrond wordt ongewijzigd geladen en kan zoomen en versch
   await region.getByRole("button", { name: "Volledige kaart tonen" }).click();
   await expect(region.getByLabel("Zoomniveau")).toHaveText("100%");
   await expect(map).toHaveAttribute("viewBox", "0 0 1286.25 1284.749967");
+  expect(errors).toEqual([]);
 });
 
 test("bevestigde winkels staan in de juiste units en linken naar hun winkelpagina", async ({ page, request }) => {
@@ -113,6 +116,55 @@ test("volledige tekening wordt niet automatisch aan een verdieping toegewezen", 
   await level.selectOption("overview");
   await expect(map.locator(".floor-map-svg")).toBeVisible();
   await expect(map.getByRole("list").getByRole("button")).toHaveCount(24);
+});
+
+test("winkeldetails openen de bevestigde unit en houden meerdere units per winkel vindbaar", async ({ page }) => {
+  for (const item of [
+    { slug: "gw-rozemarijn", name: "G&W Gezondheids Winkel Rozemarijn", unit: "13", count: 1 },
+    { slug: "scapino", name: "Scapino", unit: "17", count: 2 },
+    { slug: "wibra", name: "Wibra", unit: "33", count: 2 },
+  ]) {
+    await page.goto(sitePath(`/winkels/${item.slug}`));
+    const link = page.getByRole("link", { name: "Bekijk op de plattegrond", exact: true });
+    await expect(link).toHaveAttribute("href", `${sitePath("/bezoekersinformatie")}?unit=${item.unit}#plattegrond`);
+    await link.click();
+    const map = page.getByRole("region", { name: "Bezoekersplattegrond" });
+    await expect(map.getByRole("searchbox")).toHaveValue(item.name);
+    await expect(map.getByRole("list").getByRole("button")).toHaveCount(item.count);
+    await expect(map.locator(`[data-unit-id="unit-${item.unit}"]`)).toHaveAttribute("aria-pressed", "true");
+    expect(Number(await map.locator(".floor-map-viewport").getAttribute("data-zoom"))).toBeGreaterThan(1);
+  }
+});
+
+test("unitlinks werken na herladen en browsergeschiedenis, met een mobiele sprong naar winkelinformatie", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.setViewportSize({ width: 390, height: 844 });
+  const url = `${sitePath("/bezoekersinformatie")}?unit=13#plattegrond`;
+  await page.goto(url);
+  const map = page.getByRole("region", { name: "Bezoekersplattegrond" });
+  const details = map.getByRole("region", { name: "Informatie over de selectie" });
+  await expect(map.locator('[data-unit-id="unit-13"]')).toHaveAttribute("aria-pressed", "true");
+  await page.evaluate((href) => window.history.pushState(null, "", href), `${sitePath("/bezoekersinformatie")}?unit=19#plattegrond`);
+  await expect(map.locator('[data-unit-id="unit-19"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(details.getByRole("heading")).toHaveText("Scapino");
+  await page.goBack();
+  await expect(map.locator('[data-unit-id="unit-13"]')).toHaveAttribute("aria-pressed", "true");
+  await page.reload();
+  await expect(map.locator('[data-unit-id="unit-13"]')).toHaveAttribute("aria-pressed", "true");
+  await map.getByRole("link", { name: "Bekijk winkelinformatie", exact: true }).click();
+  await expect(details).toBeInViewport();
+  await expect(details).toBeFocused();
+  await map.getByRole("button", { name: "Selectie wissen", exact: true }).click();
+  await expect(details.getByRole("heading")).toHaveText("Kies een winkel of unit");
+  await map.getByRole("searchbox").fill("125");
+  await map.getByRole("list").getByRole("button").click();
+  await expect(details.getByRole("heading")).toHaveText("Unit 125");
+  await expect(map.locator('[data-unit-id="unit-13"]')).toHaveAttribute("aria-pressed", "false");
+  await page.goto(`${sitePath("/bezoekersinformatie")}?unit=4044#plattegrond`);
+  await expect(map.locator('.floor-map-unit [aria-pressed="true"]')).toHaveCount(0);
+  await expect(map.getByRole("list").getByRole("button")).toHaveCount(24);
+  expect(errors).toEqual([]);
 });
 
 test("zoeklijst, informatiepaneel en lege verdiepingen zijn toegankelijk op mobiel en desktop", async ({ page }) => {

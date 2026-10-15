@@ -4,8 +4,8 @@ import type { MapUnit } from "@/data/floor-plan";
 import type { Shop } from "@/data/shops";
 import { mapUnitName } from "@/lib/floor-plan";
 
-export function UnitDetails({ unit, shop, onClear }: { unit?: MapUnit; shop?: Shop; onClear: () => void }) {
-  return <section className="floor-map-details" aria-label="Informatie over de selectie">
+export function UnitDetails({ id, unit, shop, onClear }: { id?: string; unit?: MapUnit; shop?: Shop; onClear: () => void }) {
+  return <section id={id} tabIndex={-1} className="floor-map-details" aria-label="Informatie over de selectie">
     {unit || shop ? <>
       <div className="floor-map-details-top"><span className="floor-map-kicker">{unit ? `Unit ${unit.unitNumber}` : shop?.unit ?? "Winkelinformatie"}</span><button type="button" className="floor-map-close" aria-label="Selectie wissen" onClick={onClear}><X size={17} aria-hidden="true" /></button></div>
       <h3>{unit ? mapUnitName(unit, shop) : shop!.name}</h3>
