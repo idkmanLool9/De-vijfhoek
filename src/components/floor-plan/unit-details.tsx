@@ -7,7 +7,7 @@ import { mapUnitName } from "@/lib/floor-plan";
 export function UnitDetails({ unit, shop, onClear }: { unit?: MapUnit; shop?: Shop; onClear: () => void }) {
   return <section className="floor-map-details" aria-label="Informatie over de selectie">
     {unit || shop ? <>
-      <div className="floor-map-details-top"><span className="floor-map-kicker">{unit ? `Unit ${unit.unitNumber}` : "Winkelinformatie"}</span><button type="button" className="floor-map-close" aria-label="Selectie wissen" onClick={onClear}><X size={17} aria-hidden="true" /></button></div>
+      <div className="floor-map-details-top"><span className="floor-map-kicker">{unit ? `Unit ${unit.unitNumber}` : shop?.unit ?? "Winkelinformatie"}</span><button type="button" className="floor-map-close" aria-label="Selectie wissen" onClick={onClear}><X size={17} aria-hidden="true" /></button></div>
       <h3>{unit ? mapUnitName(unit, shop) : shop!.name}</h3>
       <dl><div><dt>Categorie</dt><dd>{shop?.categoryLabel ?? "Nog niet bevestigd"}</dd></div></dl>
       {!unit?.geometry && <p>Locatie op de plattegrond nog niet bevestigd.</p>}

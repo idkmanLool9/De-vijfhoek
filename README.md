@@ -31,7 +31,7 @@ Een bestaande ontwikkelserver op poort 3000 wordt hergebruikt. Testen tegen de p
 E2E_PORT=3100 E2E_SERVER_COMMAND='npm run start -- --port 3100' npm run test:e2e
 ```
 
-De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilters, lege toestanden, zes winkeldetails, 404’s, interne links en ankers, toetsenbordnavigatie, het mobiele menu, schermbreedtes van 320–1440 pixels en automatische WCAG A/AA-regels met axe. Automatische toegankelijkheidschecks vervangen geen volledige handmatige audit.
+De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilters, lege toestanden, alle bevestigde winkeldetails, 404’s, interne links en ankers, toetsenbordnavigatie, het mobiele menu, schermbreedtes van 320–1440 pixels en automatische WCAG A/AA-regels met axe. Automatische toegankelijkheidschecks vervangen geen volledige handmatige audit.
 
 ## Routes
 
@@ -48,15 +48,15 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 
 ## Gegevens en officiële media
 
-De bezoekerspagina toont de aangeleverde vastgoedplattegrond met zoom, verschuiven en toetsenbordbediening. Het SVG-bestand staat ongewijzigd onder `public/maps/`. Winkels en aangeleverde unitnummers zijn doorzoekbaar; winkelposities en afzonderlijke verdiepingen worden pas na bevestiging gekoppeld. Het aangeleverde SVG bevat geen unitlabels, dus voor klikbare winkelgrenzen blijft de genummerde tekening nodig. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
+De bezoekerspagina toont de aangeleverde vastgoedplattegrond met zoom, verschuiven en toetsenbordbediening. Het SVG-bestand staat ongewijzigd onder `public/maps/`. De genummerde referentietekening bepaalt de 24 klikbare unitcontouren. Acht bevestigde winkels zijn aan tien units gekoppeld, met zichtbare winkelnamen en links naar de winkelpagina’s. Onbekende winkels tonen alleen het unitnummer; afzonderlijke verdiepingen wachten op een eigen bevestigde kaart. De centrale winkelkoppelingen staan in `src/data/shop-units.ts`. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
 
 Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van officiële foto’s en logo’s, beschrijvingen en uitsneden. Keuzes worden lokaal in de browser bewaard en kunnen als ZIP-pakket worden geëxporteerd en teruggezet. Ze worden pas voor iedereen zichtbaar nadat het pakket in de repository is verwerkt en gedeployed. Zie [Foto’s bewerken](docs/fotos-bewerken.md) voor gebruik, overdracht en het later verwijderen van de editor.
 
-- `src/data/shops.ts`: de zes door de opdrachtgever bevestigde winkels. Voeg een object met unieke `slug` toe voor een nieuwe bevestigde winkel. Categorieën staan in hetzelfde bestand; zoekresultaataantallen worden uit de data berekend.
+- `src/data/shops.ts`: de door de opdrachtgever bevestigde winkels. Voeg een object met unieke `slug` toe voor een nieuwe bevestigde winkel. Categorieën staan in hetzelfde bestand; zoekresultaataantallen worden uit de data berekend.
 - Onbekende vestigingsgegevens zijn `null`. Telefoon-, e-mail-, website-, openingstijden- en voorzieningensecties tonen uitsluitend ingevulde, bevestigde informatie. Voorlopig zijn er geen bevestigde contactgegevens of openingstijden opgenomen.
 - `src/data/news.ts`: uitsluitend redactioneel bevestigde publicaties toevoegen, met ISO-publicatiedatum, unieke slug, `verified: true` en `status: "published"`. Alleen die berichten zijn publiek zichtbaar. Zonder bevestigde berichten geeft een nieuwsdetailroute 404; er worden geen voorbeeldartikelen gepubliceerd. De detailtemplate is gebouwd en compileert, maar kan pas met echte inhoud functioneel worden gecontroleerd.
-- Officiële winkelbeelden en logo’s kunnen onder `public/images/` komen, met lokale paden in `photo` en `logo`. Er zijn nu geen echte centrumfoto’s, winkelfoto’s of logo’s aangeleverd. Het winkelsymbool bij de tijdelijke tekstweergave in de header is een Lucide-icoon, geen officieel logo.
-- `src/components/ui.tsx` en de homepage bevatten herkenbare foto-/hero-placeholders. Vervang die door aangeleverde officiële media. Behoud bij de homepagefoto de donkere overlay voor de witte tekst. Gebruik geen gegenereerde of willekeurige stockfoto’s als beeld van het centrum.
+- Aangeleverde officiële foto’s en logo’s staan onder `public/images/official/`. De publicatiekoppelingen en uitsneden staan centraal in `src/data/media.json`; de tijdelijke fotobewerker kan aanvullende media voorbereiden. Alle aangeleverde bestanden blijven bewaard, ook wanneer een bestand nog niet aan een openbare positie is gekoppeld.
+- Beeldposities zonder aangeleverde officiële media tonen een herkenbare placeholder. De homepagefoto behoudt de donkere overlay voor de witte tekst. Gebruik geen gegenereerde of willekeurige stockfoto’s als beeld van het centrum.
 - Bezoekersinformatie en achtergrondteksten bevatten geen onbevestigde parkeerlocaties, tarieven, toegangsfaciliteiten, adressen, eigenaar of historische data. Deze kunnen na bevestiging gericht worden aangevuld.
 
 ## Vormgeving

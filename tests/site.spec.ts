@@ -6,14 +6,14 @@ import { sitePath } from "./paths";
 test("winkelgids zoekt, combineert filters en herstelt een lege zoekopdracht", async ({ page }) => {
   await page.goto(sitePath("/winkels"));
   const results = page.locator("#winkelresultaten");
-  await expect(results.getByRole("link")).toHaveCount(6);
+  await expect(results.getByRole("link")).toHaveCount(shops.length);
   await page.getByRole("searchbox").fill("  ALBERT  ");
   await expect(results.getByRole("link")).toHaveCount(1);
   await expect(results.getByRole("heading")).toHaveText("Albert Heijn");
   await page.getByRole("button", { name: "Drogisterij", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Geen winkels gevonden" })).toBeVisible();
   await page.getByRole("button", { name: "Toon alle winkels" }).click();
-  await expect(results.getByRole("link")).toHaveCount(6);
+  await expect(results.getByRole("link")).toHaveCount(shops.length);
   await page.getByRole("button", { name: "Huishoudelijk", exact: true }).click();
   await expect(results.getByRole("link")).toHaveCount(2);
   await page.getByRole("button", { name: "Schoenen", exact: true }).click();

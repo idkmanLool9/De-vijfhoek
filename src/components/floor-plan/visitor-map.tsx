@@ -27,7 +27,7 @@ export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { pla
   const hasGeometry = !!plan && (plan.sourceImage !== null || plan.units.some(isPlacedMapUnit));
   const hasPlacedUnits = !!plan?.units.some(isPlacedMapUnit);
   const floorLabel = plan?.label ?? mapFloors.find((floor) => floor.id === level)?.label ?? "Plattegrond";
-  const selectionAnnouncement = selectedUnit ? `${mapUnitName(selectedUnit, selectedShop)} geselecteerd.${!selectedUnit.geometry ? " Locatie op de kaart nog niet bevestigd." : ""}` : selectedShop ? `${selectedShop.name} geselecteerd. Locatie op de kaart nog niet bevestigd.` : "Geen winkel of unit geselecteerd.";
+  const selectionAnnouncement = selectedUnit ? `${mapUnitName(selectedUnit, selectedShop)}${selectedShop ? `, unit ${selectedUnit.unitNumber}` : ""} geselecteerd.${!selectedUnit.geometry ? " Locatie op de kaart nog niet bevestigd." : ""}` : selectedShop ? `${selectedShop.name} geselecteerd. Locatie op de kaart nog niet bevestigd.` : "Geen winkel of unit geselecteerd.";
 
   function chooseUnit(unitId: string) {
     const unit = plan?.units.find((unit) => unit.id === unitId);
@@ -48,7 +48,7 @@ export function VisitorMap({ plans = floorPlans, shops = confirmedShops }: { pla
       <div className="floor-map-main">
         {hasGeometry && plan ? <><MapCanvas key={plan.id} plan={plan} shops={shops} selectedId={selectedUnit?.id ?? null} matchingIds={search ? units.map((unit) => unit.id) : null} onSelect={(unitId) => setSelection(unitId ? { kind: "unit", id: unitId } : null)} canvasRef={canvas} />{hasPlacedUnits && <div className="floor-map-legend" aria-label="Legenda"><span><i className="floor-map-swatch" />Winkelruimte</span><span><i className="floor-map-swatch selected" />Geselecteerd</span></div>}</> :
           <div className="floor-map-unavailable" role="status"><Map size={36} strokeWidth={1.2} aria-hidden="true" /><span className="floor-map-kicker">{floorLabel}</span><h3>Plattegrond nog niet beschikbaar</h3><p>{plan ? "De plattegrond wordt voorbereid. Je kunt alvast winkels en unitnummers opzoeken. Bevestigde winkelposities volgen." : "Er is nog geen bevestigde plattegrond voor deze verdieping beschikbaar."}</p></div>}
-        {plan && <p className="floor-map-source-note">Verdiepingen en winkelposities worden nog bevestigd.</p>}
+        {plan && <p className="floor-map-source-note">{hasPlacedUnits ? "Winkelkoppelingen volgens de opdrachtgever. Units zonder bevestigde winkel tonen alleen hun nummer. Dit overzicht bevat meerdere gebouwdelen; afzonderlijke verdiepingskaarten volgen." : "Verdiepingen en winkelposities worden nog bevestigd."}</p>}
       </div>
       <aside className="floor-map-sidebar" aria-label="Winkels en units opzoeken">
         <UnitDetails unit={selectedUnit} shop={selectedShop} onClear={() => setSelection(null)} />

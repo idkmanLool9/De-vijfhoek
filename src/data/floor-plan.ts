@@ -1,3 +1,6 @@
+import unitGeometry from "./floor-plan-geometry.json";
+import { shopUnitAllocations } from "./shop-units";
+
 export type FloorId = "ground" | "first";
 export type Point = { x: number; y: number };
 export type MapBounds = Point & { width: number; height: number };
@@ -11,7 +14,7 @@ export type MapGeometry = {
 export type MapUnit = {
   id: string;
   unitNumber: string;
-  // Publish a shop allocation only after its location has been checked.
+  // Null for units whose occupant has not been confirmed by the owner.
   shopSlug: string | null;
   geometry: MapGeometry | null;
 };
@@ -35,10 +38,11 @@ export const mapFloors: { id: FloorId; label: string }[] = [
 ];
 
 // Display the supplied SVG unchanged, including its original coordinate system.
-// It embeds the cleaned plan as a PNG and has no unit labels or unit paths.
-// The owner supplied the numbers below separately; their positions stay empty
-// until the numbered drawing is available. Do not infer a floor for the whole
-// drawing from a floor label on a particular building section.
+// Unit identities come from the owner's numbered reference. Interactive paths
+// follow the interiors of the existing walls in the unchanged cleaned image,
+// including columns and enclosed rooms as holes (even-odd fill). They do not
+// replace any wall. Unnumbered detached sections remain without allocations.
+// Do not infer a floor for the whole drawing from a local floor annotation.
 export const floorPlans: FloorPlan[] = [{
   id: "overview",
   label: "Volledige vastgoedplattegrond",
@@ -46,11 +50,11 @@ export const floorPlans: FloorPlan[] = [{
   source: "Door de opdrachtgever aangeleverde vastgoedplattegrond",
   viewBox: { x: 0, y: 0, width: 1286.25, height: 1284.749967 },
   sourceImage: { src: "/maps/de-vijfhoek-vastgoedplattegrond.svg", width: 1286.25, height: 1284.749967 },
-  units: ["1", "5", "9", "15", "17", "19", "33", "35", "75", "141"].map((unitNumber) => ({
+  units: Object.entries(unitGeometry).map(([unitNumber, geometry]) => ({
     id: `unit-${unitNumber}`,
     unitNumber,
-    shopSlug: null,
-    geometry: null,
+    shopSlug: shopUnitAllocations.find((allocation) => (allocation.unitNumbers as readonly string[]).includes(unitNumber))?.shopSlug ?? null,
+    geometry,
   })),
 }];
 
