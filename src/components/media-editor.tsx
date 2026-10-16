@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, type ChangeEvent } from "react";
 import { Download, Eye, ImagePlus, Upload, ArrowLeft, Check, Trash2 } from "lucide-react";
 import { mediaSlots, publishedMedia } from "@/data/media";
 import { assetPath } from "@/lib/paths";
+import { responsiveMedia } from "@/lib/responsive-media";
 import { MAX_PACKAGE_BYTES, type StoredMedia } from "@/lib/media-schema";
 // Keep ZIP operations in the editor's initial bundle. An already open editor
 // must not request a deferred chunk that may disappear after a deployment.
@@ -41,7 +42,7 @@ function MediaEditorCard({ slot, exportBusy }: { slot: Slot; exportBusy: boolean
 
   return <article className="editor-card" aria-labelledby={`titel-${slot.id}`} data-editor-slot={slot.id}>
     <div className={`editor-card-preview${slot.kind === "logo" ? " editor-logo-preview" : ""}`}>
-      {src ? <Image src={src} alt={draft?.alt || published?.alt || slot.label} fill sizes="(max-width: 639px) 100vw, 33vw" unoptimized style={{ objectFit: slot.kind === "logo" ? "contain" : "cover", objectPosition: `${position.x}% ${position.y}%` }} /> : <ImagePlus size={32} strokeWidth={1.25} aria-hidden="true" />}
+      {src ? <Image src={src} alt={draft?.alt || published?.alt || slot.label} fill sizes="(max-width: 639px) 100vw, 33vw" unoptimized {...responsiveMedia(published?.src ?? "", !!draft)} style={{ objectFit: slot.kind === "logo" ? "contain" : "cover", objectPosition: `${position.x}% ${position.y}%` }} /> : <ImagePlus size={32} strokeWidth={1.25} aria-hidden="true" />}
     </div>
     <div className="editor-card-body"><div className="editor-card-heading"><h3 id={`titel-${slot.id}`}>{slot.label}</h3><span className={`editor-badge${draft ? " is-filled" : ""}`}>{draft ? <><Check size={12} aria-hidden="true" />Lokaal gekozen</> : published ? "Vast op website" : "Nog leeg"}</span></div>
       <p className="editor-hint">{slot.hint}</p>

@@ -1,0 +1,512 @@
+{
+  "/images/official/centrum-hero.jpg": {
+    "hash": "46ff26656d2d74ee",
+    "width": 5727,
+    "height": 3902,
+    "originalBytes": 4968617,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/centrum-hero-46ff26656d2d74ee-480.webp",
+        "bytes": 39050
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/centrum-hero-46ff26656d2d74ee-960.webp",
+        "bytes": 133496
+      },
+      {
+        "width": 1600,
+        "src": "/images/optimized/centrum-hero-46ff26656d2d74ee-1600.webp",
+        "bytes": 335110
+      },
+      {
+        "width": 2400,
+        "src": "/images/optimized/centrum-hero-46ff26656d2d74ee-2400.webp",
+        "bytes": 602058
+      }
+    ]
+  },
+  "/images/official/centrum-logo.png": {
+    "hash": "83e2138f26b800c4",
+    "width": 2172,
+    "height": 724,
+    "originalBytes": 538466,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/centrum-logo-83e2138f26b800c4-160.webp",
+        "bytes": 5272
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/centrum-logo-83e2138f26b800c4-320.webp",
+        "bytes": 12664
+      }
+    ]
+  },
+  "/images/official/eten-foto.webp": {
+    "hash": "d7c059d95ec01e30",
+    "width": 680,
+    "height": 1020,
+    "originalBytes": 59812,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/eten-foto-d7c059d95ec01e30-480.webp",
+        "bytes": 17882
+      },
+      {
+        "width": 680,
+        "src": "/images/optimized/eten-foto-d7c059d95ec01e30-680.webp",
+        "bytes": 36136
+      }
+    ]
+  },
+  "/images/official/home-bezoek.png": {
+    "hash": "339b67eb7fa06d98",
+    "width": 662,
+    "height": 662,
+    "originalBytes": 33795,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/home-bezoek-339b67eb7fa06d98-480.webp",
+        "bytes": 1212
+      },
+      {
+        "width": 662,
+        "src": "/images/optimized/home-bezoek-339b67eb7fa06d98-662.webp",
+        "bytes": 1788
+      }
+    ]
+  },
+  "/images/official/home-eten.webp": {
+    "hash": "f6d286a9c63c9d5f",
+    "width": 765,
+    "height": 1020,
+    "originalBytes": 163464,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/home-eten-f6d286a9c63c9d5f-480.webp",
+        "bytes": 52690
+      },
+      {
+        "width": 765,
+        "src": "/images/optimized/home-eten-f6d286a9c63c9d5f-765.webp",
+        "bytes": 138478
+      }
+    ]
+  },
+  "/images/official/home-winkels.webp": {
+    "hash": "e27d44a9afec9de7",
+    "width": 765,
+    "height": 1020,
+    "originalBytes": 152274,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/home-winkels-e27d44a9afec9de7-480.webp",
+        "bytes": 43842
+      },
+      {
+        "width": 765,
+        "src": "/images/optimized/home-winkels-e27d44a9afec9de7-765.webp",
+        "bytes": 133032
+      }
+    ]
+  },
+  "/images/official/over-centrum.png": {
+    "hash": "95be0a683dd21912",
+    "width": 1398,
+    "height": 1125,
+    "originalBytes": 3252236,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/over-centrum-95be0a683dd21912-480.webp",
+        "bytes": 57400
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/over-centrum-95be0a683dd21912-960.webp",
+        "bytes": 198674
+      },
+      {
+        "width": 1398,
+        "src": "/images/optimized/over-centrum-95be0a683dd21912-1398.webp",
+        "bytes": 348916
+      }
+    ]
+  },
+  "/images/official/winkel-action-foto.png": {
+    "hash": "e6d839d757a7e1db",
+    "width": 1448,
+    "height": 1086,
+    "originalBytes": 2279120,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-action-foto-e6d839d757a7e1db-480.webp",
+        "bytes": 27374
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-action-foto-e6d839d757a7e1db-960.webp",
+        "bytes": 85222
+      },
+      {
+        "width": 1448,
+        "src": "/images/optimized/winkel-action-foto-e6d839d757a7e1db-1448.webp",
+        "bytes": 155128
+      }
+    ]
+  },
+  "/images/official/winkel-action-logo.webp": {
+    "hash": "ba28b79c92fe998b",
+    "width": 1280,
+    "height": 242,
+    "originalBytes": 15876,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-action-logo-ba28b79c92fe998b-160.webp",
+        "bytes": 2364
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-action-logo-ba28b79c92fe998b-320.webp",
+        "bytes": 4632
+      }
+    ]
+  },
+  "/images/official/winkel-albert-heijn-foto.png": {
+    "hash": "3885829c172b0f4d",
+    "width": 1448,
+    "height": 1086,
+    "originalBytes": 2942833,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-albert-heijn-foto-3885829c172b0f4d-480.webp",
+        "bytes": 45248
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-albert-heijn-foto-3885829c172b0f4d-960.webp",
+        "bytes": 164142
+      },
+      {
+        "width": 1448,
+        "src": "/images/optimized/winkel-albert-heijn-foto-3885829c172b0f4d-1448.webp",
+        "bytes": 314674
+      }
+    ]
+  },
+  "/images/official/winkel-albert-heijn-logo.png": {
+    "hash": "20df2d0653a89bcc",
+    "width": 1200,
+    "height": 675,
+    "originalBytes": 7716,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-albert-heijn-logo-20df2d0653a89bcc-160.webp",
+        "bytes": 4502
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-albert-heijn-logo-20df2d0653a89bcc-320.webp",
+        "bytes": 8616
+      }
+    ]
+  },
+  "/images/official/winkel-bakkerij-nollen-foto.png": {
+    "hash": "f90bdff0a7aec288",
+    "width": 1448,
+    "height": 1086,
+    "originalBytes": 2489008,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-bakkerij-nollen-foto-f90bdff0a7aec288-480.webp",
+        "bytes": 37102
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-bakkerij-nollen-foto-f90bdff0a7aec288-960.webp",
+        "bytes": 116608
+      },
+      {
+        "width": 1448,
+        "src": "/images/optimized/winkel-bakkerij-nollen-foto-f90bdff0a7aec288-1448.webp",
+        "bytes": 218178
+      }
+    ]
+  },
+  "/images/official/winkel-bakkerij-nollen-logo.png": {
+    "hash": "588dcfa4375e5462",
+    "width": 800,
+    "height": 800,
+    "originalBytes": 105072,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-bakkerij-nollen-logo-588dcfa4375e5462-160.webp",
+        "bytes": 11446
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-bakkerij-nollen-logo-588dcfa4375e5462-320.webp",
+        "bytes": 28094
+      }
+    ]
+  },
+  "/images/official/winkel-bibliotheek-oldenzaal-foto.png": {
+    "hash": "d7fb56c37e90652b",
+    "width": 1672,
+    "height": 941,
+    "originalBytes": 2253982,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-bibliotheek-oldenzaal-foto-d7fb56c37e90652b-480.webp",
+        "bytes": 23270
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-bibliotheek-oldenzaal-foto-d7fb56c37e90652b-960.webp",
+        "bytes": 73148
+      },
+      {
+        "width": 1600,
+        "src": "/images/optimized/winkel-bibliotheek-oldenzaal-foto-d7fb56c37e90652b-1600.webp",
+        "bytes": 157050
+      }
+    ]
+  },
+  "/images/official/winkel-bibliotheek-oldenzaal-logo.png": {
+    "hash": "34e49cd07fcae2ac",
+    "width": 800,
+    "height": 304,
+    "originalBytes": 114274,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-bibliotheek-oldenzaal-logo-34e49cd07fcae2ac-160.webp",
+        "bytes": 8010
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-bibliotheek-oldenzaal-logo-34e49cd07fcae2ac-320.webp",
+        "bytes": 21758
+      }
+    ]
+  },
+  "/images/official/winkel-gall-en-gall-foto.png": {
+    "hash": "6e23d02a75757dda",
+    "width": 1448,
+    "height": 1086,
+    "originalBytes": 2521890,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-gall-en-gall-foto-6e23d02a75757dda-480.webp",
+        "bytes": 35700
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-gall-en-gall-foto-6e23d02a75757dda-960.webp",
+        "bytes": 111984
+      },
+      {
+        "width": 1448,
+        "src": "/images/optimized/winkel-gall-en-gall-foto-6e23d02a75757dda-1448.webp",
+        "bytes": 211514
+      }
+    ]
+  },
+  "/images/official/winkel-gall-en-gall-logo.webp": {
+    "hash": "a57a5809effa7839",
+    "width": 512,
+    "height": 278,
+    "originalBytes": 5088,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-gall-en-gall-logo-a57a5809effa7839-160.webp",
+        "bytes": 3128
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-gall-en-gall-logo-a57a5809effa7839-320.webp",
+        "bytes": 8536
+      }
+    ]
+  },
+  "/images/official/winkel-gw-rozemarijn-foto.png": {
+    "hash": "56d5bd5d685749da",
+    "width": 1671,
+    "height": 941,
+    "originalBytes": 2743028,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-gw-rozemarijn-foto-56d5bd5d685749da-480.webp",
+        "bytes": 33896
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-gw-rozemarijn-foto-56d5bd5d685749da-960.webp",
+        "bytes": 112356
+      },
+      {
+        "width": 1600,
+        "src": "/images/optimized/winkel-gw-rozemarijn-foto-56d5bd5d685749da-1600.webp",
+        "bytes": 247872
+      }
+    ]
+  },
+  "/images/official/winkel-gw-rozemarijn-logo.png": {
+    "hash": "cf9372d914732856",
+    "width": 447,
+    "height": 447,
+    "originalBytes": 64476,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-gw-rozemarijn-logo-cf9372d914732856-160.webp",
+        "bytes": 8610
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-gw-rozemarijn-logo-cf9372d914732856-320.webp",
+        "bytes": 22276
+      }
+    ]
+  },
+  "/images/official/winkel-kruidvat-foto.png": {
+    "hash": "784dd10e251f9df3",
+    "width": 1448,
+    "height": 1086,
+    "originalBytes": 2642332,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-kruidvat-foto-784dd10e251f9df3-480.webp",
+        "bytes": 41764
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-kruidvat-foto-784dd10e251f9df3-960.webp",
+        "bytes": 140628
+      },
+      {
+        "width": 1448,
+        "src": "/images/optimized/winkel-kruidvat-foto-784dd10e251f9df3-1448.webp",
+        "bytes": 266536
+      }
+    ]
+  },
+  "/images/official/winkel-kruidvat-logo.png": {
+    "hash": "c369e8dcba41676b",
+    "width": 768,
+    "height": 768,
+    "originalBytes": 43355,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-kruidvat-logo-c369e8dcba41676b-160.webp",
+        "bytes": 6756
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-kruidvat-logo-c369e8dcba41676b-320.webp",
+        "bytes": 12874
+      }
+    ]
+  },
+  "/images/official/winkel-scapino-foto.png": {
+    "hash": "ccf8209dc646f740",
+    "width": 1671,
+    "height": 941,
+    "originalBytes": 2521420,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-scapino-foto-ccf8209dc646f740-480.webp",
+        "bytes": 28836
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-scapino-foto-ccf8209dc646f740-960.webp",
+        "bytes": 91424
+      },
+      {
+        "width": 1600,
+        "src": "/images/optimized/winkel-scapino-foto-ccf8209dc646f740-1600.webp",
+        "bytes": 199010
+      }
+    ]
+  },
+  "/images/official/winkel-scapino-logo.jpg": {
+    "hash": "d3491a73ea1bcd9e",
+    "width": 650,
+    "height": 480,
+    "originalBytes": 22060,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-scapino-logo-d3491a73ea1bcd9e-160.webp",
+        "bytes": 4890
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-scapino-logo-d3491a73ea1bcd9e-320.webp",
+        "bytes": 14838
+      }
+    ]
+  },
+  "/images/official/winkel-wibra-foto.png": {
+    "hash": "2fbbf93dd15862af",
+    "width": 1672,
+    "height": 941,
+    "originalBytes": 2279228,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/images/optimized/winkel-wibra-foto-2fbbf93dd15862af-480.webp",
+        "bytes": 20062
+      },
+      {
+        "width": 960,
+        "src": "/images/optimized/winkel-wibra-foto-2fbbf93dd15862af-960.webp",
+        "bytes": 63776
+      },
+      {
+        "width": 1600,
+        "src": "/images/optimized/winkel-wibra-foto-2fbbf93dd15862af-1600.webp",
+        "bytes": 139652
+      }
+    ]
+  },
+  "/images/official/winkel-wibra-logo.webp": {
+    "hash": "281cf7d96155c2ad",
+    "width": 512,
+    "height": 512,
+    "originalBytes": 6200,
+    "variants": [
+      {
+        "width": 160,
+        "src": "/images/optimized/winkel-wibra-logo-281cf7d96155c2ad-160.webp",
+        "bytes": 5024
+      },
+      {
+        "width": 320,
+        "src": "/images/optimized/winkel-wibra-logo-281cf7d96155c2ad-320.webp",
+        "bytes": 15120
+      }
+    ]
+  }
+}

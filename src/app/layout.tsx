@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { MediaProvider } from "@/components/media-provider";
 import { MediaPreviewNotice } from "@/components/media-preview-notice";
+import { NavigationScroll } from "@/components/navigation-scroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="nl"><body>
+  return <html lang="nl" data-scroll-behavior="smooth"><body>
     <a className="skip-link" href="#inhoud">Ga naar inhoud</a>
-    <MediaProvider><MediaPreviewNotice /><Header /><main id="inhoud" tabIndex={-1}>{children}</main><Footer /></MediaProvider>
+    <MediaProvider><MediaPreviewNotice /><Header /><main id="inhoud" tabIndex={-1}>{children}</main><Footer /></MediaProvider><NavigationScroll />
   </body></html>;
 }

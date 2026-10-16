@@ -16,7 +16,13 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "media:import": "node scripts/import-media.mjs"
+    "media:import": "node scripts/import-media.mjs",
+    "media:optimize": "node scripts/optimize-media.mjs",
+    "predev": "npm run media:optimize",
+    "prebuild": "npm run media:optimize",
+    "prebuild:pages": "npm run media:optimize",
+    "prebuild:cloudflare-pages": "npm run media:optimize",
+    "prebuild:cloudflare": "npm run media:optimize"
   },
   "dependencies": {
     "fflate": "^0.8.3",
@@ -36,6 +42,7 @@
     "esbuild": "^0.28.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "wrangler": "^4.151.0"

@@ -11,8 +11,9 @@ const nextConfig: NextConfig = {
   basePath,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
   poweredByHeader: false,
-  // Serve official assets directly; no separate Cloudflare Images service is required.
-  images: { unoptimized: true },
+  // Custom loaders serve pre-generated WebP files on both static hosts.
+  // Local editor blobs and unknown assets stay unoptimized per component.
+  images: { deviceSizes: [480, 960, 1600, 2400], imageSizes: [160, 320] },
   // The browser checks use this loopback hostname rather than localhost.
   allowedDevOrigins: ["127.0.0.1"],
 };

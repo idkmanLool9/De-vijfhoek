@@ -8,12 +8,13 @@ import { pathToFileURL } from "node:url";
 import { zipSync, strToU8 } from "fflate";
 import { publishedMedia } from "../src/data/media";
 import { basePath, sitePath } from "./paths";
+import { publishedImageSrc } from "./media-paths";
 
 async function expectPublishedHero(page: Page) {
   const hero = publishedMedia["centrum-hero"];
   if (hero) {
     const image = page.locator('[data-media-id="centrum-hero"] img');
-    await expect(image).toHaveAttribute("src", `${basePath}${hero.src}`);
+    await expect(image).toHaveAttribute("src", `${basePath}${publishedImageSrc(hero.src)}`);
     await expect(image).toHaveCSS("object-position", `${hero.position.x}% ${hero.position.y}%`);
   } else {
     await expect(page.locator('[data-media-id="centrum-hero"]')).toHaveCount(0);

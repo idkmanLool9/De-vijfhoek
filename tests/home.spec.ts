@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { publishedMedia } from "../src/data/media";
 import { basePath, sitePath } from "./paths";
+import { publishedImageSrc } from "./media-paths";
 
 test("homepage toont de afgesproken inhoud en beschikbare beelden", async ({ page }) => {
   await page.goto(sitePath("/"));
@@ -9,7 +10,7 @@ test("homepage toont de afgesproken inhoud en beschikbare beelden", async ({ pag
   const hero = publishedMedia["centrum-hero"];
   if (hero) {
     const image = page.locator('[data-media-id="centrum-hero"] img');
-    await expect(image).toHaveAttribute("src", `${basePath}${hero.src}`);
+    await expect(image).toHaveAttribute("src", `${basePath}${publishedImageSrc(hero.src)}`);
     await expect(image).toHaveCSS("object-position", `${hero.position.x}% ${hero.position.y}%`);
     await expect.poll(() => image.evaluate((node) => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     await expect(page.getByText("Fotoplaceholder · Officiële centrumfoto volgt")).toHaveCount(0);

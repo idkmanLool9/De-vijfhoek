@@ -31,7 +31,7 @@ test("alle bevestigde winkeldetails werken zonder verzonnen contactgegevens", as
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(shop.name);
     await expect(page.getByRole("heading", { name: "Openingstijden", exact: true })).toBeVisible();
-    await expect(page.getByText("De openingstijden van deze vestiging zijn nog niet bevestigd.", { exact: false })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Openingstijden op Google", exact: false })).toBeVisible();
     await expect(page.locator('a[href^="tel:"], a[href^="mailto:"]')).toHaveCount(0);
     await expect(page.getByRole("navigation", { name: "Kruimelpad" }).getByRole("link", { name: "Winkels", exact: true })).toHaveAttribute("href", sitePath("/winkels"));
   }
