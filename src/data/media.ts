@@ -11,7 +11,7 @@ export const mediaSlots = [
   { id: "home-winkels", label: "Homepage · Winkels", group: "Centrum & homepage", route: "/", hint: "Liggende centrum- of winkelfoto voor de eerste navigatiekaart.", kind: "photo" },
   { id: "home-eten", label: "Homepage · Eten & drinken", group: "Centrum & homepage", route: "/", hint: "Officiële liggende foto voor de tweede navigatiekaart.", kind: "photo" },
   { id: "home-bezoek", label: "Homepage · Bezoekersinfo", group: "Centrum & homepage", route: "/", hint: "Liggende centrumfoto voor de derde navigatiekaart.", kind: "photo" },
-  { id: "over-centrum", label: "Over De Vijfhoek · centrumfoto", group: "Overige pagina’s", route: "/over-de-vijfhoek", hint: "Bewaarde centrumfoto. Deze plek op Over De Vijfhoek toont nu Google Maps; je fotokeuze blijft behouden.", kind: "photo" },
+  { id: "over-centrum", label: "Bezoekersinfo · centrumfoto", group: "Overige pagina’s", route: "/bezoekersinformatie#bereikbaarheid", hint: "Centrumfoto naast de bereikbaarheid. De bestaande fotokeuze blijft behouden; op Over De Vijfhoek staat Google Maps.", kind: "photo" },
   { id: "eten-foto", label: "Eten & drinken · foto", group: "Overige pagina’s", route: "/eten-en-drinken", hint: "Gebruik een aangeleverde officiële foto. Deze keuze voegt geen onbevestigde horecazaken toe.", kind: "photo" },
   ...shops.flatMap((shop) => [
     { id: `winkel-${shop.slug}-foto`, label: `${shop.name} · winkelfoto`, group: "Winkels", route: `/winkels/${shop.slug}`, hint: "Dezelfde foto verschijnt in de winkelgids en op de detailpagina.", kind: "photo" },

@@ -24,6 +24,12 @@ Deze gegevens zijn overgenomen uit de expliciete gebruikersaanvulling. De daarbi
 
 De nieuwe namen zijn toegevoegd zonder openingstijden, telefoonnummers, postcodes, websites of voorzieningen af te leiden. Hebbez | Ik wil Mode valt op basis van de aangeleverde naam onder Mode. Voor Candy Corner en 't Glashoes blijft de branche onbevestigd: zij tonen voorlopig het algemene label Winkel en staan in Alle winkels. De zes nieuwe foto-/logoplekken zijn beschikbaar in de bestaande fotobewerker; de 25 aangeleverde beeldkeuzes en alle oorspronkelijke bestanden zijn behouden.
 
+## Aangeleverde centruminformatie — 16 oktober 2026
+
+De opdrachtgever heeft `de-vijfhoek-bezoekersinformatie.json` uit de informatiebewerker teruggestuurd voor verwerking. De 19 velden zijn via `npm run info:import` opgenomen in `src/data/visitor-info.json`: bereikbaarheid, parkeren, toegankelijkheid, Renpart als beheerder, openbare contactgegevens, geschiedenis en ondernemersinformatie. Dit is door de opdrachtgever aangeleverde inhoud; er is tijdens deze wijziging geen onafhankelijke actuele broncontrole uitgevoerd. De onderstaande onderzoekspunten blijven relevant voor periodieke controle, met name voor parkeertarieven en voorzieningen.
+
+De tekst blijft volledig beschikbaar in kaarten en uitklapbare onderdelen. De indeling verandert geen aangeleverde bedragen, locaties of voorwaarden. Winkelgegevens en plattegrondgeometrie zijn niet gewijzigd.
+
 ## Nog te onderzoeken
 
 De gebruiker heeft verduidelijkt dat met ontbrekende informatie niet een privacylek werd bedoeld. De aanvulling van 16 oktober bevat nu gratis Google-links voor beschikbare openingstijden, contactmogelijkheden, reviews, foto’s en routes. De gebruiker heeft expliciet gekozen om de Places API nog niet in te richten. Deze links en de centrumembed zijn geen zelfstandig geverifieerde vestigingsgegevens en vullen de lege feitelijke velden niet automatisch. Zie `docs/google-en-prestaties.md`.

@@ -209,7 +209,6 @@ svg { flex-shrink: 0; }
 .visitor-card p { font-size: 13px; color: var(--muted); }
 .visitor-card div > svg { margin-top: 21px; }
 .visitor-sections { margin-top: 55px; }
-.visitor-sections > section:not(#plattegrond) { max-width: 850px; }
 .visitor-sections > section { border-top: 1px solid var(--line); padding-block: 32px; scroll-margin-top: 28px; }
 .topic-heading { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
 .topic-heading h2 { font-size: 25px; }

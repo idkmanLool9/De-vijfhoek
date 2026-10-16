@@ -75,7 +75,7 @@ test("gratis Google-koppelingen verwijzen naar de juiste winkel zonder verzonnen
     const reviews = new URL((await page.getByRole("link", { name: "Reviews op Google", exact: false }).getAttribute("href"))!);
     expect(reviews.searchParams.get("q")).toBe(`${search.searchParams.get("query")} reviews`);
     await expect(page.locator(".hours-list")).toHaveCount(0);
-    await expect(page.locator('a[href^="tel:"]')).toHaveCount(0);
+    await expect(page.locator('main a[href^="tel:"]')).toHaveCount(0);
   }
   // Third-party rendering is not controlled by this repository. Validate the
   // real embed URL, accessible title and usable fallback links independently.

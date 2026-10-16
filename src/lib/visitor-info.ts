@@ -1,7 +1,7 @@
 export const visitorFields = [
   { id: "visitAddress", label: "Bezoekadres", group: "Bereikbaarheid", type: "text", maxLength: 300, hint: "Het openbare bezoekadres van het winkelcentrum." },
   { id: "arrivalInfo", label: "Bereikbaarheid en ingangen", group: "Bereikbaarheid", type: "textarea", maxLength: 2000, hint: "Beschrijf hoe bezoekers het centrum bereiken en welke ingangen zij kunnen gebruiken." },
-  { id: "publicTransportInfo", label: "Openbaar vervoer", group: "Bereikbaarheid", type: "textarea", maxLength: 1500, hint: "Vermeld bevestigde stations, haltes en eventuele loopinstructies." },
+  { id: "publicTransportInfo", label: "Auto, fiets & openbaar vervoer", group: "Bereikbaarheid", type: "textarea", maxLength: 1500, hint: "Zet Met de auto, Met de fiets of Met het OV op een eigen regel, met de uitleg eronder. Laat een lege regel tussen de reiswijzen." },
   { id: "parkingLocations", label: "Parkeerlocaties", group: "Parkeren", type: "textarea", maxLength: 2000, hint: "Namen en adressen van parkeerplaatsen of garages voor bezoekers." },
   { id: "parkingRates", label: "Parkeertarieven", group: "Parkeren", type: "textarea", maxLength: 1500, hint: "Vermeld de actuele tarieven en eventuele uitzonderingen." },
   { id: "parkingPaymentHours", label: "Betaaltijden parkeren", group: "Parkeren", type: "textarea", maxLength: 1500, hint: "Op welke dagen en tijden gelden de parkeertarieven?" },

@@ -7,6 +7,7 @@ import { NavigationScroll } from "@/components/navigation-scroll";
 import { VisitorInfoProvider } from "@/components/visitor-info-provider";
 import { VisitorInfoPreviewNotice } from "@/components/visitor-info-preview-notice";
 import "./globals.css";
+import "./information.css";
 
 export const metadata: Metadata = {
   title: { default: "De Vijfhoek Oldenzaal | Alles dichtbij", template: "%s | De Vijfhoek Oldenzaal" },

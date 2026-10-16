@@ -1,0 +1,133 @@
+/* A visit guide with short entry points and full details on demand. */
+.visit-welcome { display: grid; grid-template-columns: 1.15fr 1fr; gap: 90px; align-items: center; margin: 10px 0 35px; }
+.visit-welcome > div > h2 { font-size: clamp(30px, 3.3vw, 44px); line-height: 1.12; }
+.visit-welcome > div > p:last-child { max-width: 450px; margin-top: 18px; color: var(--muted); font-size: 15px; }
+.opening-callout { display: flex; gap: 20px; align-items: flex-start; background: #f6f6f5; padding: 28px; border: 1px solid var(--line); border-radius: 8px; scroll-margin-top: 28px; }
+.opening-callout h2 { font-size: 21px; margin-bottom: 10px; }
+.opening-callout p { font-size: 14px; color: var(--muted); }
+.opening-callout .text-link { margin-top: 18px; }
+.visitor-page .visitor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.visitor-page .visitor-card { padding: 19px 21px; gap: 15px; align-items: center; }
+.visitor-page .visitor-card > div { min-width: 0; flex: 1; }
+.visitor-page .visitor-card h2 { font-size: 15px; margin: 0 0 4px; letter-spacing: -.015em; }
+.visitor-page .visitor-card p { font-size: 12px; }
+.visitor-page .visitor-sections { margin-top: 44px; }
+.visitor-page .visitor-sections > section { max-width: none; padding-block: 45px; }
+.visitor-page .topic-heading { margin-bottom: 25px; align-items: center; }
+.visitor-page .topic-heading .eyebrow { color: var(--muted); font-size: 10px; margin-bottom: 7px; }
+.visitor-page .topic-heading h2 { font-size: 30px; }
+.arrival-intro { display: grid; grid-template-columns: 1.15fr 1fr; gap: 60px; align-items: center; }
+.arrival-intro > div { min-width: 0; }
+.arrival-intro .arrival-photo { min-height: 260px; overflow: hidden; }
+.visit-address { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 22px; }
+.visit-address span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+.visit-address strong { display: block; font-size: 18px; letter-spacing: -.02em; line-height: 1.45; overflow-wrap: anywhere; }
+.visit-address svg { margin-top: 3px; }
+.travel-cards, .parking-locations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 30px; }
+.travel-card { min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; align-items: flex-start; }
+.travel-card > h3 { margin-block: 17px 12px; font-size: 19px; }
+.travel-card > .text-link, .parking-location > .text-link { margin-top: auto; padding-top: 22px; }
+.travel-card > .information-copy, .parking-location > .information-copy { margin-bottom: 2px; }
+.parking-locations { margin-top: 0; }
+.parking-location { padding: 26px; background: #f7f7f6; border-radius: 8px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.location-number { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 20px; }
+.parking-location h3 { font-size: 20px; line-height: 1.3; margin-bottom: 12px; }
+.parking-practical { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 24px; align-items: start; }
+.information-details { min-width: 0; border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }
+.information-details > summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; cursor: pointer; padding: 20px 0; min-height: 64px; }
+.information-details > summary::-webkit-details-marker { display: none; }
+.information-details > summary > span { min-width: 0; }
+.information-details > summary strong { display: block; font-size: 14px; line-height: 1.45; font-weight: 600; }
+.information-details > summary small { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.information-details > summary:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.information-details[open] > summary > svg { transform: rotate(180deg); }
+.information-details-body { padding: 0 0 22px; }
+.information-copy { min-width: 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.information-copy-section + .information-copy-section, .information-copy-section > div + div { margin-top: 18px; }
+.information-copy h4 { font-size: 14px; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 9px; }
+.information-copy ul { padding-left: 20px; margin: 12px 0 0; }
+.information-copy li + li { margin-top: 9px; }
+.information-copy ul + p { margin-top: 12px; }
+.visitor-page .information-footnote { font-size: 12px; margin-top: 18px; color: var(--muted); }
+.map-section-heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+.map-section-heading > p { max-width: 290px; margin-bottom: 25px; }
+.visitor-page .accessibility-section { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; align-items: start; }
+.accessibility-section > div:first-child > p { max-width: 310px; }
+.accessibility-details .information-details { border-bottom: 0; }
+.accessibility-details .information-details:last-child { border-bottom: 1px solid #dedede; }
+.accessibility-details .information-details > summary { padding-block: 22px; }
+.visitor-page .visitor-faq { display: grid; grid-template-columns: .7fr 1.3fr; gap: 70px; align-items: start; }
+.visitor-faq .topic-heading { align-items: flex-start; }
+.about-story { margin-top: 58px; padding-top: 38px; border-top: 1px solid var(--line); }
+.about-story h2 { font-size: 30px; }
+.history-chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 45px; }
+.history-chapter { min-width: 0; display: flex; align-items: flex-start; gap: 20px; }
+.chapter-number { color: #707272; font-size: 13px; font-weight: 600; border-top: 2px solid #252727; padding-top: 10px; min-width: 30px; }
+.history-chapter > div { min-width: 0; }
+.history-chapter h3 { font-size: 22px; line-height: 1.3; }
+.history-chapter p { color: var(--muted); font-size: 14px; margin-top: 14px; }
+.history-chapter .information-details { margin-top: 17px; border-bottom: 0; }
+.history-chapter .information-details > summary { padding-block: 13px; min-height: 44px; }
+.history-chapter .information-copy p { margin-top: 0; }
+.centre-information-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 22px; align-items: start; margin-top: 50px; }
+.centre-information-card { display: flex; gap: 18px; padding: 28px; border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+.centre-information-card > div { min-width: 0; flex: 1; }
+.centre-information-card h2 { font-size: 21px; margin-block: 2px 14px; }
+.centre-information-card p { font-size: 14px; color: var(--muted); }
+.centre-information-card .management-name { font-size: 22px; color: var(--ink); font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.centre-information-card .information-details { margin-top: 20px; border-bottom: 0; }
+.centre-information-card .information-details > summary { min-height: 44px; }
+.centre-contact-card { background: #f7f7f6; grid-column: 2; grid-row: 1 / span 2; border-color: #f0f0ee; }
+.centre-contact-card .eyebrow { font-size: 10px; }
+.centre-contact-card h2 { font-size: 28px; margin-top: 8px; }
+.contact-actions { gap: 10px; margin-top: 22px; }
+.contact-actions .contact-link { display: flex; width: 100%; align-items: center; gap: 12px; border: 1px solid #dedede; border-radius: 6px; background: #fff; padding: 13px 15px; min-height: 48px; text-decoration: none; }
+.contact-actions .contact-link:hover { border-color: #898b8b; }
+@media (max-width: 1023px) {
+  .visit-welcome { gap: 35px; }
+  .arrival-intro { gap: 30px; }
+  .travel-cards, .parking-locations, .parking-practical { gap: 15px; }
+  .travel-card, .parking-location { padding: 20px; }
+  .visitor-page .visitor-card { padding: 17px 14px; gap: 10px; }
+  .visitor-page .visitor-card > svg:last-child { display: none; }
+  .visitor-page .accessibility-section, .visitor-page .visitor-faq { gap: 30px; }
+  .centre-information-card { padding: 23px; gap: 14px; }
+}
+@media (max-width: 767px) {
+  .visit-welcome, .arrival-intro { grid-template-columns: 1fr; gap: 24px; }
+  .visit-welcome { margin-top: 0; margin-bottom: 25px; }
+  .visit-welcome > div > h2 { font-size: 34px; }
+  .opening-callout { padding: 22px; }
+  .visitor-page .visitor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .visitor-page .visitor-card { align-items: flex-start; padding: 17px 13px; }
+  .visitor-page .visitor-card h2 { font-size: 13px; overflow-wrap: anywhere; }
+  .visitor-page .visitor-card p { font-size: 11px; }
+  .visitor-page .visitor-card > svg { width: 18px; height: 18px; }
+  .visitor-page .visitor-sections { margin-top: 30px; }
+  .visitor-page .visitor-sections > section { padding-block: 32px; }
+  .visitor-page .topic-heading h2 { font-size: 26px; }
+  .arrival-intro .arrival-photo { min-height: 210px; }
+  .travel-cards, .parking-locations, .parking-practical, .history-chapters, .centre-information-grid { grid-template-columns: 1fr; gap: 18px; }
+  .travel-card { padding: 23px; }
+  .parking-location { padding: 24px; }
+  .location-number { margin-bottom: 12px; }
+  .parking-practical { gap: 0; }
+  .parking-practical .information-details { border-bottom: 0; }
+  .parking-practical .information-details:last-child { border-bottom: 1px solid #dedede; }
+  .map-section-heading { display: block; }
+  .map-section-heading > p { margin-bottom: 22px; max-width: none; }
+  .visitor-page .accessibility-section, .visitor-page .visitor-faq { grid-template-columns: 1fr; gap: 24px; }
+  .visitor-faq .topic-heading { margin-bottom: 0; }
+  .about-story { margin-top: 38px; padding-top: 30px; }
+  .about-story h2 { font-size: 27px; }
+  .history-chapters { gap: 28px; }
+  .history-chapter { gap: 15px; }
+  .history-chapter h3 { font-size: 20px; }
+  .centre-information-grid { margin-top: 30px; }
+  .centre-information-card { padding: 22px; }
+  .centre-contact-card { grid-column: auto; grid-row: auto; }
+  .contact-actions .contact-link { font-size: 12px; padding-inline: 11px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .information-details > summary > svg { transition: transform 160ms ease; }
+}

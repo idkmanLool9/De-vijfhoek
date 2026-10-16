@@ -15,6 +15,8 @@ Wijzigingen worden automatisch in deze browser bewaard. **Bekijk bezoekersinform
 
 Het voorbeeld is alleen lokaal zichtbaar. De balk boven de website geeft dit aan. Met **Informatievoorbeeld uitzetten** verberg je het voorbeeld zonder je invoer te wissen. **Herstel gepubliceerd** herstelt één veld naar de gepubliceerde waarde.
 
+De openbare pagina’s tonen de invoer als korte onderdelen. Zet een tussenkop op een eigen regel en laat lege regels tussen onderwerpen. Gebruik `• ` aan het begin van een regel voor een opsomming. Dit blijft gewone tekst; HTML wordt niet uitgevoerd. Bij **Auto, fiets & openbaar vervoer** krijgen de koppen **Met de auto**, **Met de fiets** en **Met het OV** elk een eigen kaart met een routeknop. Parkeerlocaties krijgen afzonderlijke kaarten. Tarieven, voorzieningen en langere centrumteksten zijn uitklapbaar, zodat alle informatie beschikbaar blijft zonder lange tekstblokken bij het openen van de pagina.
+
 ## Back-up en overdracht
 
 1. Kies regelmatig **Download informatiebestand**. Je krijgt `de-vijfhoek-bezoekersinformatie.json` met de gewijzigde velden.

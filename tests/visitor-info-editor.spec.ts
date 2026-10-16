@@ -6,6 +6,7 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { readVisitorPackage, emptyVisitorInfo } from "../src/lib/visitor-info";
 import { sitePath } from "./paths";
+import publishedInfo from "../src/data/visitor-info.json";
 
 // All data in these tests is synthetic and is never written to the live site.
 const parking = "[Testgegevens lokale editor] Parkeerzone voor de browsertest.\nTweede regel voor de voorvertoning.";
@@ -21,6 +22,7 @@ test("informatie blijft lokaal bewaard en verschijnt alleen in de eigen voorvert
   await expect(page.getByRole("navigation", { name: "Bewerkmodus" }).getByRole("link", { name: "Bezoekersinformatie", exact: true })).toHaveAttribute("aria-current", "page");
   await page.getByLabel("Parkeerlocaties", { exact: true }).fill(parking);
   await page.getByLabel("Toegankelijke ingangen", { exact: true }).fill("Testbeschrijving van de ingang.");
+  await page.getByLabel("Lift", { exact: true }).fill("");
   await page.getByLabel("Naam beheerder", { exact: true }).fill("Testbeheerder voor de browsertest");
   await page.getByLabel("Openbaar e-mailadres", { exact: true }).fill("informatie@example.test");
   await page.reload();
@@ -28,7 +30,7 @@ test("informatie blijft lokaal bewaard en verschijnt alleen in de eigen voorvert
   await page.getByRole("link", { name: "Bekijk bezoekersinformatie", exact: true }).click();
   await expect(page.locator("#parkeren")).toContainText(parking);
   await expect(page.locator("#toegankelijkheid")).toContainText("Testbeschrijving van de ingang.");
-  await expect(page.locator("#toegankelijkheid").getByRole("heading", { name: "Lift", exact: true })).toHaveCount(0);
+  await expect(page.locator("#toegankelijkheid summary").filter({ hasText: /^Lift/ })).toHaveCount(0);
   await expect(page.getByRole("complementary", { name: "Lokale informatievoorvertoning" })).toBeVisible();
   const other = await browser.newContext();
   const visitor = await other.newPage();
@@ -44,7 +46,7 @@ test("informatie blijft lokaal bewaard en verschijnt alleen in de eigen voorvert
   await openEditor(page);
   await expect(page.getByLabel("Naam beheerder", { exact: true })).toHaveValue("Testbeheerder voor de browsertest");
   await page.getByRole("button", { name: "Herstel Naam beheerder", exact: true }).click();
-  await expect(page.getByLabel("Naam beheerder", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Naam beheerder", { exact: true })).toHaveValue(publishedInfo.managementName);
   await expect(page.getByLabel("Parkeerlocaties", { exact: true })).toHaveValue(parking);
 });
 
