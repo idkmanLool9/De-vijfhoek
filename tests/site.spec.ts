@@ -19,7 +19,7 @@ test("winkelgids zoekt, combineert filters en herstelt een lege zoekopdracht", a
   await page.getByRole("button", { name: "Schoenen", exact: true }).click();
   await expect(results.getByRole("heading")).toHaveText("Scapino");
   await page.getByRole("button", { name: "Mode", exact: true }).click();
-  await expect(results.getByRole("heading")).toHaveText("Scapino");
+  await expect(results.getByRole("heading")).toHaveText(["Scapino", "Hebbez | Ik wil Mode"]);
   await page.getByRole("button", { name: "Wis filters" }).click();
   await page.getByRole("searchbox").fill("boeken");
   await expect(results.getByRole("heading")).toHaveText("Bibliotheek Oldenzaal");
@@ -119,7 +119,7 @@ test("alle interne links verwijzen naar bestaande routes en ankers", async ({ pa
 for (const width of [320, 768, 1440]) {
   test(`overige pagina’s hebben geen overflow op ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of ["/winkels", "/winkels/bibliotheek-oldenzaal", "/eten-en-drinken", "/nieuws", "/bezoekersinformatie", "/over-de-vijfhoek"]) {
+    for (const route of ["/winkels", "/winkels/bibliotheek-oldenzaal", "/winkels/gw-rozemarijn", "/winkels/hebbez-ik-wil-mode", "/winkels/candy-corner", "/winkels/t-glashoes", "/eten-en-drinken", "/nieuws", "/bezoekersinformatie", "/over-de-vijfhoek"]) {
       await page.goto(sitePath(route));
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), route).toBe(true);
     }

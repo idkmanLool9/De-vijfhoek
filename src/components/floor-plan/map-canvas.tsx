@@ -10,10 +10,10 @@ import { assetPath } from "@/lib/paths";
 export type MapCanvasHandle = { reveal: (unit: PlacedMapUnit) => void };
 type Drag = { pointerId: number; start: Point; camera: MapCamera; moved: boolean };
 
-function labelLines(name: string): string[] {
+function labelLines(name: string, maxCharacters = 12): string[] {
   return name.split(" ").reduce<string[]>((lines, word) => {
     const last = lines.at(-1);
-    if (last && `${last} ${word}`.length <= 12) lines[lines.length - 1] = `${last} ${word}`;
+    if (last && `${last} ${word}`.length <= maxCharacters) lines[lines.length - 1] = `${last} ${word}`;
     else lines.push(word);
     return lines;
   }, []);
@@ -171,15 +171,18 @@ export function MapCanvas({ plan, shops, selectedId, matchingIds, onSelect, canv
           {units.map((unit) => {
             const shop = shops.find((shop) => shop.slug === unit.shopSlug);
             const name = mapUnitName(unit, shop);
-            const lines = shop ? labelLines(shop.mapLabel ?? shop.name) : [];
+            // Keep names inside small units without changing their source geometry.
+            const compact = unit.geometry.bounds.width < 120 && unit.geometry.bounds.height < 110;
+            const lineHeight = compact ? 16 : 21;
+            const lines = shop ? labelLines(shop.mapLabel ?? shop.name, compact ? 8 : 12) : [];
             return <g key={unit.id} className={`floor-map-unit ${plan.sourceImage ? "has-source" : ""} ${selectedId === unit.id ? "is-selected" : ""} ${matchingIds && !matchingIds.includes(unit.id) ? "is-dimmed" : ""}`}>
               <path ref={(element) => { if (element) paths.current.set(unit.id, element); else paths.current.delete(unit.id); }}
                 d={unit.geometry.path} fillRule="evenodd" vectorEffect="non-scaling-stroke" role="button" tabIndex={focusId === unit.id ? 0 : -1}
                 data-unit-id={unit.id} aria-label={`${name}${shop ? `, unit ${unit.unitNumber}` : ", winkel nog niet bevestigd"}`}
                 aria-pressed={selectedId === unit.id} onFocus={() => focusUnit(unit)} onKeyDown={(event) => unitKeys(event, unit)}
                 onClick={() => { if (!suppressClick.current) onSelect(unit.id); }} />
-              <text className={shop ? "floor-map-shop-label" : "floor-map-number-label"} x={unit.geometry.label.x} y={unit.geometry.label.y} textAnchor="middle" dominantBaseline="middle" aria-hidden="true">
-                {shop ? <>{lines.map((line, index) => <tspan key={index} x={unit.geometry.label.x} y={unit.geometry.label.y + (index - (lines.length - 1) / 2) * 21 - 8}>{line}</tspan>)}<tspan className="floor-map-label-number" x={unit.geometry.label.x} y={unit.geometry.label.y + (lines.length - 1) / 2 * 21 + 15}>Unit {unit.unitNumber}</tspan></> : `Unit ${unit.unitNumber}`}
+              <text className={shop ? `floor-map-shop-label${compact ? " is-compact" : ""}` : "floor-map-number-label"} x={unit.geometry.label.x} y={unit.geometry.label.y} textAnchor="middle" dominantBaseline="middle" aria-hidden="true">
+                {shop ? <>{lines.map((line, index) => <tspan key={index} x={unit.geometry.label.x} y={unit.geometry.label.y + (index - (lines.length - 1) / 2) * lineHeight - 8}>{line}</tspan>)}<tspan className="floor-map-label-number" x={unit.geometry.label.x} y={unit.geometry.label.y + (lines.length - 1) / 2 * lineHeight + (compact ? 7 : 15)}>Unit {unit.unitNumber}</tspan></> : `Unit ${unit.unitNumber}`}
               </text>
             </g>;
           })}

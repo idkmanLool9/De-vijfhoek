@@ -44,12 +44,12 @@ test("bevestigde winkels staan in de juiste units en linken naar hun winkelpagin
   await expect(region.getByLabel("Legenda")).toBeVisible();
   const originalPaths = await drawing.locator(".floor-map-unit path").evaluateAll((paths) => paths.map((p) => p.getAttribute("d")));
   // Independent reference points read from the numbered drawing, in the
-  // unchanged clean source coordinate system. All eleven owner allocations.
+  // unchanged clean source coordinate system. All thirteen owner allocations.
   const expected = [
     { unit: "1", name: "Albert Heijn", slug: "albert-heijn", point: [802.5, 241] },
     { unit: "5", name: "Gall & Gall", slug: "gall-en-gall", point: [513.6, 261.1] },
     { unit: "9", name: "Bakkerij Nollen", slug: "bakkerij-nollen", point: [513.6, 381.4] },
-    { unit: "13", name: "G&W Gezondheids Winkel Rozemarijn", slug: "gw-rozemarijn", point: [481.5, 501.8] },
+    { unit: "13", name: "G&W Gezondheidswinkel Rozemarijn", slug: "gw-rozemarijn", point: [481.5, 501.8] },
     { unit: "15", name: "Kruidvat", slug: "kruidvat", point: [621.9, 481.8] },
     { unit: "17", name: "Scapino", slug: "scapino", point: [754.4, 489.8] },
     { unit: "19", name: "Scapino", slug: "scapino", point: [890.8, 509.8] },
@@ -57,6 +57,8 @@ test("bevestigde winkels staan in de juiste units en linken naar hun winkelpagin
     { unit: "35", name: "Wibra", slug: "wibra", point: [794.5, 834.9] },
     { unit: "75", name: "Bibliotheek Oldenzaal", slug: "bibliotheek-oldenzaal", point: [280.9, 883] },
     { unit: "141", name: "Action", slug: "action", point: [224.7, 345.3] },
+    { unit: "25", name: "Candy Corner", slug: "candy-corner", point: [747.93, 702.44] },
+    { unit: "49", name: "'t Glashoes", slug: "t-glashoes", point: [783.24, 1230.48] },
   ];
   for (const item of expected) {
     const unit = drawing.getByRole("button", { name: `${item.name}, unit ${item.unit}`, exact: true });
@@ -120,9 +122,11 @@ test("volledige tekening wordt niet automatisch aan een verdieping toegewezen", 
 
 test("winkeldetails openen de bevestigde unit en houden meerdere units per winkel vindbaar", async ({ page }) => {
   for (const item of [
-    { slug: "gw-rozemarijn", name: "G&W Gezondheids Winkel Rozemarijn", unit: "13", count: 1 },
+    { slug: "gw-rozemarijn", name: "G&W Gezondheidswinkel Rozemarijn", unit: "13", count: 1 },
     { slug: "scapino", name: "Scapino", unit: "17", count: 2 },
     { slug: "wibra", name: "Wibra", unit: "33", count: 2 },
+    { slug: "candy-corner", name: "Candy Corner", unit: "25", count: 1 },
+    { slug: "t-glashoes", name: "'t Glashoes", unit: "49", count: 1 },
   ]) {
     await page.goto(sitePath(`/winkels/${item.slug}`));
     const link = page.getByRole("link", { name: "Bekijk op de plattegrond", exact: true });
@@ -134,6 +138,19 @@ test("winkeldetails openen de bevestigde unit en houden meerdere units per winke
     await expect(map.locator(`[data-unit-id="unit-${item.unit}"]`)).toHaveAttribute("aria-pressed", "true");
     expect(Number(await map.locator(".floor-map-viewport").getAttribute("data-zoom"))).toBeGreaterThan(1);
   }
+  // A confirmed shop with no confirmed unit must never select another space.
+  await page.goto(sitePath("/winkels/hebbez-ik-wil-mode"));
+  await expect(page.getByText("De locatie op de plattegrond is nog niet bevestigd.")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Bekijk op de plattegrond", exact: true })).toHaveCount(0);
+  await page.getByRole("link", { name: "Bekijk de plattegrond", exact: true }).first().click();
+  const map = page.getByRole("region", { name: "Bezoekersplattegrond" });
+  await map.getByRole("searchbox").fill("Hebbez");
+  await map.getByRole("list").getByRole("button").click();
+  const details = map.getByRole("region", { name: "Informatie over de selectie" });
+  await expect(details.getByRole("heading")).toHaveText("Hebbez | Ik wil Mode");
+  await expect(details.getByText("Locatie op de plattegrond nog niet bevestigd.")).toBeVisible();
+  await expect(details.getByRole("link")).toHaveAttribute("href", sitePath("/winkels/hebbez-ik-wil-mode"));
+  await expect(map.locator('.floor-map-unit [aria-pressed="true"]')).toHaveCount(0);
 });
 
 test("unitlinks werken na herladen en browsergeschiedenis, met een mobiele sprong naar winkelinformatie", async ({ page }) => {

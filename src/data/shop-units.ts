@@ -10,6 +10,8 @@ export const shopUnitAllocations = [
   { shopSlug: "gall-en-gall", unitNumbers: ["5"] },
   { shopSlug: "wibra", unitNumbers: ["33", "35"] },
   { shopSlug: "bibliotheek-oldenzaal", unitNumbers: ["75"] },
+  { shopSlug: "candy-corner", unitNumbers: ["25"] },
+  { shopSlug: "t-glashoes", unitNumbers: ["49"] },
 ] as const;
 
 export function getShopUnitLabel(slug: string): string | null {

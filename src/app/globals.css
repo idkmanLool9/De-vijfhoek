@@ -133,7 +133,7 @@ svg { flex-shrink: 0; }
 .shop-card .photo-placeholder, .shop-card .official-photo { min-height: 180px; }
 .shop-card-body { display: flex; align-items: center; gap: 12px; padding: 18px; flex: 1; min-height: 104px; }
 .shop-card-body > div:not(.shop-logo) { flex: 1; min-width: 0; }
-.shop-card-body h2 { font-size: 16px; letter-spacing: -.02em; line-height: 1.35; }
+.shop-card-body h2 { font-size: 16px; letter-spacing: -.02em; line-height: 1.35; overflow-wrap: anywhere; }
 .shop-card-body p { font-size: 12px; margin-top: 5px; color: var(--muted); }
 .shop-card-body > svg { margin-left: auto; flex-shrink: 0; }
 .shop-logo { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border: 1px dashed #d2d2d2; border-radius: 4px; flex-shrink: 0; }
@@ -151,9 +151,10 @@ svg { flex-shrink: 0; }
 .shop-gallery .shop-main-photo { min-height: 370px; border-radius: 6px; }
 .shop-gallery .content-note { margin-top: 12px; }
 .shop-title { display: flex; gap: 20px; align-items: center; }
+.shop-title > div:last-child { min-width: 0; }
 .shop-title .shop-logo { width: 65px; height: 65px; }
 .shop-title .shop-logo:has(.site-media) { width: 88px; height: 64px; }
-.shop-title h1 { font-size: 33px; }
+.shop-title h1 { font-size: 33px; overflow-wrap: anywhere; }
 .shop-title p { font-size: 14px; color: var(--muted); margin-top: 4px; }
 .shop-description { margin-block: 24px 20px; font-size: 15px; color: #55585a; }
 .shop-actions { display: flex; flex-wrap: wrap; gap: 12px; }

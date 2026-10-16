@@ -32,6 +32,8 @@
 .floor-map-unit .floor-map-shop-label { font-size: 18px; font-weight: 600; }
 .floor-map-unit .floor-map-number-label { font-size: 17px; }
 .floor-map-unit .floor-map-label-number { font-size: 13px; font-weight: 400; }
+.floor-map-unit .floor-map-shop-label.is-compact { font-size: 12px; }
+.floor-map-unit .is-compact .floor-map-label-number { font-size: 11px; }
 .floor-map-unit.is-dimmed path { fill: #fafbfa; stroke: #929b95; }
 .floor-map-unit.is-dimmed.has-source path { fill: rgb(255 255 255 / 48%); stroke: transparent; }
 .floor-map-unit.is-dimmed text { fill: #626a65; }

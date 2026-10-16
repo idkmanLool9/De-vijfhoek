@@ -2,10 +2,27 @@
 
 ## Bevestigd door de opdrachtgever
 
-- De negen winkels en hun unitkoppelingen staan centraal in `src/data/shops.ts` en `src/data/shop-units.ts`.
+- De twaalf bevestigde winkels staan centraal in `src/data/shops.ts`. Elf winkels hebben samen dertien unitkoppelingen in `src/data/shop-units.ts`; de unit van Hebbez | Ik wil Mode is nog niet bevestigd.
 - De genummerde vastgoedplattegrond bepaalt de unitcontouren. Een unitnummer is geen zelfstandig bewijs voor een volledig postadres of een verdieping.
 - Bakkerij Nollen (unit 9) en Gall & Gall (unit 5) zijn daarom ook opgenomen op **Eten & drinken**, vanuit de centrale categorieën Eten & drinken en Dranken. Er zijn geen menu’s, zitplaatsen, openingstijden of horecavoorzieningen uit afgeleid.
 - Alle 25 aangeleverde beeldkeuzes zijn verwerkt. De fotobewerker en eerdere bestanden blijven behouden.
+
+## Aanvulling door de opdrachtgever op 16 oktober 2026
+
+| Winkel | Aangeleverd straatadres | Nieuwe unitkoppeling |
+| --- | --- | --- |
+| Albert Heijn | In den Vijfhoek 1 | Bestaande unit 1 behouden |
+| Bakkerij Nollen | In den Vijfhoek 9 | Bestaande unit 9 behouden |
+| G&W Gezondheidswinkel Rozemarijn | In den Vijfhoek 13 | Bestaande unit 13 behouden |
+| Scapino | In den Vijfhoek 17-19 | Bestaande units 17 en 19 behouden |
+| Wibra | In den Vijfhoek 33-35 | Bestaande units 33 en 35 behouden |
+| Candy Corner | Niet aangeleverd | Unit 25 |
+| 't Glashoes | Alleen nummer 49 aangeleverd; geen volledig straatadres afgeleid | Unit 49 |
+| Hebbez \| Ik wil Mode | Niet aangeleverd | Nog niet bevestigd |
+
+Deze gegevens zijn overgenomen uit de expliciete gebruikersaanvulling. De daarbij verstrekte [Stagemarkt-link voor Wibra](https://stagemarkt.nl/leerbedrijven/wibra_07f2e78e-d225-428c-878b-e2f833926bea) is als aangeleverde bron vastgelegd, niet als zelfstandig geraadpleegde actuele bron. De algemene Google Maps-links verwijzen niet naar een concrete vestiging en zijn niet als winkelwebsites gepubliceerd.
+
+De nieuwe namen zijn toegevoegd zonder openingstijden, telefoonnummers, postcodes, websites of voorzieningen af te leiden. Hebbez | Ik wil Mode valt op basis van de aangeleverde naam onder Mode. Voor Candy Corner en 't Glashoes blijft de branche onbevestigd: zij tonen voorlopig het algemene label Winkel en staan in Alle winkels. De zes nieuwe foto-/logoplekken zijn beschikbaar in de bestaande fotobewerker; de 25 aangeleverde beeldkeuzes en alle oorspronkelijke bestanden zijn behouden.
 
 ## Nog te onderzoeken
 

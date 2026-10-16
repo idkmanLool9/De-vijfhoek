@@ -23,14 +23,18 @@ De volledige vastgoedtekening blijft één overzicht (`floor: null`). Een vermel
 | 1 | Albert Heijn |
 | 5 | Gall & Gall |
 | 9 | Bakkerij Nollen |
-| 13 | G&W Gezondheids Winkel Rozemarijn |
+| 13 | G&W Gezondheidswinkel Rozemarijn |
 | 15 | Kruidvat |
 | 17 en 19 | Scapino |
+| 25 | Candy Corner |
 | 33 en 35 | Wibra |
+| 49 | 't Glashoes |
 | 75 | Bibliotheek Oldenzaal |
 | 141 | Action |
 
-De kaart en winkelgids gebruiken dezelfde koppelingen. Bakkerij Nollen, Gall & Gall en G&W Gezondheids Winkel Rozemarijn hebben eigen statische winkelpagina’s. Rozemarijn is door de opdrachtgever expliciet als gebruiker van unit 13 bevestigd. Het compacte kaartlabel luidt **G&W Rozemarijn**; het informatiepaneel, de zoeklijst en winkelpagina tonen de volledige naam. Unitnummers worden niet gebruikt als vervanging voor een bevestigd volledig vestigingsadres. Ontbrekende contactgegevens, openingstijden en voorzieningen blijven leeg.
+De kaart en winkelgids gebruiken dezelfde koppelingen. Alle twaalf bevestigde winkels hebben eigen statische winkelpagina’s. Rozemarijn is door de opdrachtgever expliciet als gebruiker van unit 13 bevestigd. Het compacte kaartlabel luidt **G&W Rozemarijn**; het informatiepaneel, de zoeklijst en winkelpagina tonen de volledige naam. Unitnummers worden niet gebruikt als vervanging voor een bevestigd volledig vestigingsadres. Ontbrekende contactgegevens, openingstijden en voorzieningen blijven leeg.
+
+Op 16 oktober 2026 heeft de opdrachtgever Candy Corner aan unit 25 en 't Glashoes aan unit 49 gekoppeld. Hebbez | Ik wil Mode staat als één winkel in de gids; de exacte unit is nog niet bevestigd. Zoeken op Hebbez opent wel de winkelinformatie, maar selecteert geen ruimte op de tekening. De winkelpagina biedt daarom alleen een algemene link naar de plattegrond. De oorspronkelijke geometrie en bronafbeelding zijn niet aangepast.
 
 Winkelpagina’s linken rechtstreeks naar `/bezoekersinformatie/?unit=13#plattegrond` (met het juiste basepad bij GitHub Pages). De kaart selecteert de bevestigde unit en zoomt erop in. De zoeklijst toont de gekoppelde winkel, inclusief beide units bij Scapino en Wibra; de eerste bevestigde unit wordt bij de ingang vanuit de winkelpagina geselecteerd. Onbekende unitnummers in de URL maken geen nieuwe ruimte of toewijzing aan. Herladen en browsergeschiedenis blijven werken. De URL-hook staat in een afzonderlijke `Suspense`-grens, zodat de eigenlijke kaart en oorspronkelijke beeldlaag in het statische HTML behouden blijven.
 
@@ -58,6 +62,6 @@ npm run typecheck
 E2E_PAGES=1 E2E_PORT=3400 npm run test:e2e
 ```
 
-`tests/floor-map.spec.ts` controleert de echte bezoekerspagina: onveranderde bronbytes en verhoudingen, zoom, verschuiven, de elf bevestigde unittoewijzingen met onafhankelijke referentiepunten, winkelpagina-links, onbekende units zonder winkelnaam, ontbrekende verdiepingen en responsive toegankelijkheid.
+`tests/floor-map.spec.ts` controleert de echte bezoekerspagina: onveranderde bronbytes en verhoudingen, zoom, verschuiven, de dertien bevestigde unittoewijzingen met referentiepunten, winkelpagina-links, winkels zonder bevestigde locatie, onbekende units zonder winkelnaam, ontbrekende verdiepingen en responsive toegankelijkheid.
 
 `tests/map-canvas.spec.ts` controleert de kaartcomponent apart met herkenbaar synthetische geometrie. De harness staat buiten de App Router en is geen publieke route of plattegrond van De Vijfhoek. Deze tests controleren selectie, zoeken, meerdere units per winkel, zoomlimieten, slepen, aanraking, focus, toetsenbord, geometriebehoud en toegankelijkheid.
