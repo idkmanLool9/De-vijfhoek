@@ -26,7 +26,7 @@
 .floor-map .floor-map-details-link { display: none; }
 .floor-map-details { scroll-margin-top: 16px; }
 .floor-map-details:focus-visible { outline: 2px solid #32624a; outline-offset: -3px; }
-.floor-map-unit path { fill: #eef1ef; stroke: #626e67; stroke-width: 1.5; cursor: pointer; }
+.floor-map-unit path { fill: #eef1ef; stroke: #626e67; stroke-width: 1.5; cursor: pointer; transition: fill 140ms ease, stroke 140ms ease; }
 .floor-map-unit.has-source path { fill: transparent; stroke: transparent; }
 .floor-map-unit text { fill: #222a25; font: 500 24px Arial, Helvetica, sans-serif; pointer-events: none; }
 .floor-map-unit .floor-map-shop-label { font-size: 18px; font-weight: 600; }
@@ -62,7 +62,7 @@
 .floor-map .floor-map-unavailable p { max-width: 330px; margin: 0; font-size: 13px; line-height: 1.8; }
 .floor-map-kicker { font-size: 11px; line-height: 1.7; color: #58665c; }
 .floor-map-details { min-height: 233px; padding: 24px; border-bottom: 1px solid var(--line, #e5e5e5); background: #fafcfb; }
-.floor-map-details > svg { color: #42664f; margin-bottom: 16px; }
+.floor-map-details-content > svg { color: #42664f; margin-bottom: 16px; }
 .floor-map-details-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: -6px; margin-bottom: 8px; }
 .floor-map-details h3 { font-size: 19px; line-height: 1.35; letter-spacing: -.025em; }
 .floor-map .floor-map-details p { margin-top: 12px; color: #58615b; font-size: 12px; line-height: 1.8; }
@@ -84,6 +84,13 @@
 .floor-map-no-results { padding: 0 24px 26px; }
 .floor-map .floor-map-no-results p { font-size: 12px; }
 .floor-map-no-results button { min-height: 44px; margin-top: 8px; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; border: 0; background: transparent; font-size: 12px; }
+
+.floor-map-results li button, .floor-map-control-group button, .floor-map-search button, .floor-map-close { transition: background-color 140ms ease, border-color 140ms ease; }
+@media (prefers-reduced-motion: no-preference) {
+  .floor-map-details-content { animation: content-enter 180ms ease-out; }
+  .floor-map-control-group button, .floor-map-search button, .floor-map-close { transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease; }
+  .floor-map-control-group button:active:not(:disabled), .floor-map-search button:active, .floor-map-close:active { transform: scale(.95); transition-duration: 80ms; }
+}
 
 @media (max-width: 1023px) {
   .floor-map-layout { grid-template-columns: minmax(0, 1fr) 265px; }
