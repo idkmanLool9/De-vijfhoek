@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MediaEditor } from "@/components/media-editor";
-import "./editor.css";
 
 export const metadata: Metadata = {
   title: "Foto’s bewerken",

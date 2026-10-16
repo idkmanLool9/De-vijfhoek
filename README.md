@@ -45,12 +45,16 @@ De tests controleren de homepage, winkelzoekfunctie, gecombineerde categoriefilt
 | `/nieuws/[slug]` | Detailtemplate voor bevestigde publicaties |
 | `/bezoekersinformatie` | Praktische onderwerpen, plattegrond met zoom en FAQ |
 | `/over-de-vijfhoek` | Centruminformatie en contactsecties |
+| `/bewerken` | Tijdelijke lokale bewerkmodus voor foto’s en logo’s |
+| `/bewerken/informatie` | Tijdelijke lokale bewerkmodus voor bezoekersinformatie |
 
 ## Gegevens en officiële media
 
 De bezoekerspagina toont de aangeleverde vastgoedplattegrond met zoom, verschuiven en toetsenbordbediening. Het SVG-bestand staat ongewijzigd onder `public/maps/`. De genummerde referentietekening bepaalt de 24 klikbare unitcontouren. Elf van de twaalf bevestigde winkels zijn aan dertien units gekoppeld, met zichtbare winkelnamen en links naar de winkelpagina’s. Voor Hebbez | Ik wil Mode is nog geen unit bevestigd. Onbekende winkels tonen alleen het unitnummer; afzonderlijke verdiepingen wachten op een eigen bevestigde kaart. De centrale winkelkoppelingen staan in `src/data/shop-units.ts`. Zie [Bezoekersplattegrond](docs/plattegrond.md) voor bronstatus, gegevens en controles.
 
 Er is een tijdelijke bewerkmodus op **`/bewerken/`** voor het kiezen van officiële foto’s en logo’s, beschrijvingen en uitsneden. Keuzes worden lokaal in de browser bewaard en kunnen als ZIP-pakket worden geëxporteerd en teruggezet. Ze worden pas voor iedereen zichtbaar nadat het pakket in de repository is verwerkt en gedeployed. Zie [Foto’s bewerken](docs/fotos-bewerken.md) voor gebruik, overdracht en het later verwijderen van de editor.
+
+Op **`/bewerken/informatie/`** kan de opdrachtgever zelf bereikbaarheid, parkeren, toegankelijkheid, beheer/contact en centrumteksten invullen. De gegevens worden lokaal bewaard en zijn als JSON te downloaden, terug te zetten en met `npm run info:import -- /pad/naar/bestand.json` te verwerken. De gepubliceerde gegevens staan in `src/data/visitor-info.json`. Zie [Bezoekersinformatie invullen](docs/informatie-bewerken.md) voor de werkwijze. Deze opslag staat los van de fotokeuzes.
 
 Beelden krijgen automatisch kleinere responsive WebP-varianten vóór de build; originelen en uitsneden blijven bewaard. Over De Vijfhoek bevat een Google Maps-embed. Winkelpagina’s linken gratis naar Google voor routeplanning, openingstijden, reviews en contactmogelijkheden, zonder API-sleutel of verzonnen gegevens. Zie [Google-koppelingen en prestaties](docs/google-en-prestaties.md) voor de werking, controles en resterende brongegevens.
 

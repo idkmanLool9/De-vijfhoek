@@ -22,7 +22,8 @@
     "prebuild": "npm run media:optimize",
     "prebuild:pages": "npm run media:optimize",
     "prebuild:cloudflare-pages": "npm run media:optimize",
-    "prebuild:cloudflare": "npm run media:optimize"
+    "prebuild:cloudflare": "npm run media:optimize",
+    "info:import": "node scripts/import-visitor-info.mjs"
   },
   "dependencies": {
     "fflate": "^0.8.3",

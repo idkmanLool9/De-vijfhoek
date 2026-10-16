@@ -1,4 +1,22 @@
 .editor-page { padding-block: 28px 70px; }
+.editor-navigation { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 24px; }
+.editor-navigation a { border: 1px solid #d7d7d7; border-radius: 100px; padding: 10px 18px; min-height: 44px; font-size: 13px; font-weight: 600; }
+.editor-navigation a[aria-current] { background: #151616; color: #fff; border-color: #151616; }
+.information-preview-links { display: flex; flex-wrap: wrap; gap: 16px 26px; margin-block: 24px; }
+.information-preview-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.information-editor-groups { display: grid; gap: 30px; }
+.information-group { min-width: 0; margin: 0; padding: 22px; border: 1px solid #dedede; border-radius: 7px; }
+.information-group > legend { padding-inline: 8px; font-size: 21px; font-weight: 600; letter-spacing: -.02em; }
+.information-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+.information-field { min-width: 0; }
+.information-field-wide { grid-column: 1 / -1; }
+.information-field > label { display: block; font-weight: 600; font-size: 14px; }
+.information-field .editor-hint { margin-top: 6px; margin-bottom: 9px; }
+.information-field input, .information-field textarea { width: 100%; border: 1px solid #bdbfbf; border-radius: 5px; padding: 11px 12px; color: #151616; background: #fff; font: inherit; font-size: 16px; }
+.information-field textarea { display: block; resize: vertical; min-height: 110px; }
+.information-field-footer { min-height: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 15px; margin-top: 7px; font-size: 11px; color: #606164; }
+.information-field-footer button { display: inline-flex; align-items: center; gap: 5px; border: 0; background: none; min-height: 30px; padding: 0; color: #303232; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 639px) { .information-fields { grid-template-columns: 1fr; } .information-group { padding: 17px; } .information-group > legend { font-size: 19px; } }
 .editor-back { display: inline-flex; align-items: center; gap: 9px; color: #565858; font-size: 13px; margin-bottom: 28px; }
 .editor-back:hover { text-decoration: underline; }
 .editor-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 25px; margin-bottom: 25px; }

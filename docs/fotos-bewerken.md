@@ -10,6 +10,8 @@ Voor GitHub Pages:
 
 De bewerkmodus is bedoeld om de officiële beelden te verzamelen, hun plek te kiezen en het resultaat te beoordelen. Er is geen database of uploadserver nodig.
 
+Via **Bezoekersinformatie** naast **Foto’s & logo’s** kun je ook praktische gegevens en centrumteksten invullen. Die hebben een eigen informatiebestand; je fotokeuzes blijven behouden. Zie [Bezoekersinformatie invullen](informatie-bewerken.md).
+
 ## Zo gebruik je hem
 
 1. Begin bij **Centrum & homepage**. Kies het centrumlogo, de brede hero-foto en de drie kaartfoto’s.
@@ -52,10 +54,11 @@ Controleer daarna de beeldkeuzes, voer lint, build en de browsertests uit, en co
 
 ## De tijdelijke modus verwijderen
 
-Nadat de beelden definitief zijn opgenomen en gecontroleerd:
+Verwijder de tijdelijke modus pas wanneer zowel de beelden als de [bezoekersinformatie](informatie-bewerken.md) definitief zijn verwerkt en de opdrachtgever klaar is met invullen. Bewaar daarbij de gepubliceerde gegevens in `src/data/visitor-info.json` en de publieke weergavecomponenten. Nadat alles is opgenomen en gecontroleerd:
 
 1. Verwijder `src/app/bewerken/` en de tijdelijke editorinterface.
 2. Verwijder de `MediaProvider`-wrapper en `MediaPreviewNotice` uit de root-layout. De gewone header, inhoud en footer blijven direct in de layout staan.
+   Verwijder ook `VisitorInfoProvider` en `VisitorInfoPreviewNotice`. De publieke informatiecomponenten kunnen zonder provider de gepubliceerde gegevens blijven lezen.
 3. Vereenvoudig de beeldcomponenten naar het vaste manifest. `useMediaAsset` kan de gepubliceerde beelden al lezen zonder een actieve provider; lokale opslag en editorcode kunnen daarna worden opgeruimd.
 4. Werk de tijdelijke vermeldingen in documentatie en footer bij en controleer beide deployments opnieuw.
 
